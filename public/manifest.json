@@ -1,0 +1,55 @@
+{
+  "short_name": "Battleships",
+  "name": "Play Battleships Online",
+  "icons": [
+    {
+      "src": "ship/ship_16px.png",
+      "type": "image/png",
+      "sizes": "16x16"
+    },
+    {
+      "src": "ship/ship_20px.png",
+      "type": "image/png",
+      "sizes": "20x20"
+    },
+    {
+      "src": "ship/ship_24px.png",
+      "type": "image/png",
+      "sizes": "24x24"
+    },
+    {
+      "src": "ship/ship_32px.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "ship/ship_48px.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "ship/ship_64px.png",
+      "type": "image/png",
+      "sizes": "64x64"
+    },
+    {
+      "src": "ship/ship_128px.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "ship/ship_256px.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "ship/ship_512px.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
