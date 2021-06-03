@@ -8,7 +8,7 @@ const StyledHeader = styled.h1`
     src: local('Neo-Navy3D'), url(${neoNavy}) format('truetype');
   }
 
-  font-family: 'Neo-Navy3D';
+  font-family: 'Neo-Navy3D', sans-serif;
   color: white;
   font-size: 60px;
   text-align: center;
