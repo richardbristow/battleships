@@ -1,5 +1,8 @@
-import GridSquare from './GridSquare';
+import { forwardRef } from 'react';
 import styled from 'styled-components/macro';
+// import { useResizeDetector } from 'react-resize-detector';
+
+import GridSquare from './GridSquare';
 
 const StyledGrid = styled.div`
   flex: 40%;
@@ -10,12 +13,12 @@ const StyledGrid = styled.div`
   flex-wrap: wrap;
 `;
 
-const Grid = () => (
-  <StyledGrid>
-    {[...Array(100).keys()].map(() => (
-      <GridSquare />
+const Grid = forwardRef((_, ref) => (
+  <StyledGrid ref={ref}>
+    {[...Array(100).keys()].map((_, index) => (
+      <GridSquare key={`gridsquare-${index}`} />
     ))}
   </StyledGrid>
-);
+));
 
 export default Grid;

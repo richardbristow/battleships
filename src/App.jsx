@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import { useResizeDetector } from 'react-resize-detector';
 
 import Header from './Header';
 import Grid from './Grid';
@@ -10,15 +11,19 @@ const StyledGridContainer = styled.div`
   gap: 20px;
 `;
 
-const App = () => (
-  <>
-    <Header />
-    <StyledGridContainer>
-      <Panel />
-      <Grid />
-      <Grid />
-    </StyledGridContainer>
-  </>
-);
+const App = () => {
+  const { width, height, ref } = useResizeDetector();
+
+  return (
+    <>
+      <Header />
+      <StyledGridContainer>
+        <Panel shipSquareDimensions={{ width, height }} />
+        <Grid ref={ref} />
+        <Grid />
+      </StyledGridContainer>
+    </>
+  );
+};
 
 export default App;
