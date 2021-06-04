@@ -5,9 +5,16 @@ import Header from './Header';
 import Grid from './Grid';
 import Panel from './Panel';
 
-const StyledGridContainer = styled.div`
+const StyledGameContainer = styled.div`
   display: flex;
   flex-direction: row;
+  gap: 20px;
+`;
+
+const StyledGridContainer = styled.div`
+  flex: 80%;
+  height: 100%;
+  display: flex;
   gap: 20px;
 `;
 
@@ -17,11 +24,13 @@ const App = () => {
   return (
     <>
       <Header />
-      <StyledGridContainer>
+      <StyledGameContainer>
         <Panel shipSquareDimensions={{ width, height }} />
-        <Grid ref={ref} />
-        <Grid />
-      </StyledGridContainer>
+        <StyledGridContainer>
+          <Grid ref={ref} />
+          <Grid />
+        </StyledGridContainer>
+      </StyledGameContainer>
     </>
   );
 };

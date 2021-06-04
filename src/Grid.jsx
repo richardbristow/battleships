@@ -5,7 +5,7 @@ import styled from 'styled-components/macro';
 import GridSquare from './GridSquare';
 
 const StyledGrid = styled.div`
-  flex: 40%;
+  flex: 50%;
   padding: 1px;
   border: 1px solid lightblue;
   display: flex;

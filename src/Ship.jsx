@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 const StyledShip = styled.div`
   display: flex;
   flex-direction: column;
-  border: 1px solid white;
+  border-top: 1px solid white;
 
   div {
     height: ${({ shipSquareDimensions }) =>
@@ -11,6 +11,13 @@ const StyledShip = styled.div`
     width: ${({ shipSquareDimensions }) =>
       shipSquareDimensions && `${(shipSquareDimensions.width - 4) / 10}px`};
     background-color: grey;
+
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+
+    &:last-child {
+      border-bottom: 1px solid white;
+    }
   }
 `;
 
