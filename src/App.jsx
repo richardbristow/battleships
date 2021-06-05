@@ -3,7 +3,7 @@ import { useResizeDetector } from 'react-resize-detector';
 
 import Header from './Header';
 import Grid from './Grid';
-import Panel from './Panel';
+import CommandPanel from './CommandPanel';
 
 const StyledGameContainer = styled.div`
   display: flex;
@@ -25,7 +25,7 @@ const App = () => {
     <>
       <Header />
       <StyledGameContainer>
-        <Panel shipSquareDimensions={{ width, height }} />
+        <CommandPanel shipSquareDimensions={{ width, height }} />
         <StyledGridContainer>
           <Grid ref={ref} />
           <Grid />
