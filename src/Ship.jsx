@@ -1,9 +1,10 @@
+import { useState } from 'react';
 import styled from 'styled-components/macro';
 import { useDrag } from 'react-dnd';
 
 const StyledShip = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({ isVertical }) => (isVertical ? 'column' : 'row')};
   border-top: 1px solid white;
   cursor: move;
   opacity: ${({ isDragging }) => (isDragging ? '0.5' : '1')};
@@ -15,11 +16,22 @@ const StyledShip = styled.div`
       shipSquareDimensions && `${(shipSquareDimensions.width - 4) / 10}px`};
     background-color: grey;
 
-    border-left: 1px solid white;
-    border-right: 1px solid white;
+    ${({ isVertical }) =>
+      isVertical
+        ? `
+        border-left: 1px solid white;
+        border-right: 1px solid white;`
+        : `
+        border-bottom: 1px solid white;
+        &:first-child {
+          border-left: 1px solid white;
+        };`}
 
     &:last-child {
-      border-bottom: 1px solid white;
+      ${({ isVertical }) =>
+        isVertical
+          ? 'border-bottom: 1px solid white;'
+          : 'border-right: 1px solid white;'}
     }
   }
 `;
@@ -33,8 +45,11 @@ const renderShipSquares = (size) => {
 };
 
 const Ship = ({ size, shipSquareDimensions }) => {
+  const [isVertical, setIsVertical] = useState(true);
+
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'ship',
+    item: { size },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
@@ -42,6 +57,8 @@ const Ship = ({ size, shipSquareDimensions }) => {
 
   return (
     <StyledShip
+      onDoubleClick={() => setIsVertical(!isVertical)}
+      isVertical={isVertical}
       isDragging={isDragging}
       ref={drag}
       shipSquareDimensions={shipSquareDimensions}
