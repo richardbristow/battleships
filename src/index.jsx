@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Normalize } from 'styled-normalize';
 import styled, { createGlobalStyle } from 'styled-components/macro';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import App from './App';
 
@@ -24,9 +26,11 @@ ReactDOM.render(
   <React.StrictMode>
     <Normalize />
     <GlobalStyle />
-    <StyledWrapper>
-      <App />
-    </StyledWrapper>
+    <DndProvider backend={HTML5Backend}>
+      <StyledWrapper>
+        <App />
+      </StyledWrapper>
+    </DndProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

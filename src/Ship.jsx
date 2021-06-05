@@ -1,9 +1,12 @@
 import styled from 'styled-components/macro';
+import { useDrag } from 'react-dnd';
 
 const StyledShip = styled.div`
   display: flex;
   flex-direction: column;
   border-top: 1px solid white;
+  cursor: move;
+  opacity: ${({ isDragging }) => (isDragging ? '0.5' : '1')};
 
   div {
     height: ${({ shipSquareDimensions }) =>
@@ -29,10 +32,23 @@ const renderShipSquares = (size) => {
   return shipSquares;
 };
 
-const Ship = ({ size, shipSquareDimensions }) => (
-  <StyledShip shipSquareDimensions={shipSquareDimensions}>
-    {renderShipSquares(size)}
-  </StyledShip>
-);
+const Ship = ({ size, shipSquareDimensions }) => {
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: 'ship',
+    collect: (monitor) => ({
+      isDragging: !!monitor.isDragging(),
+    }),
+  }));
+
+  return (
+    <StyledShip
+      isDragging={isDragging}
+      ref={drag}
+      shipSquareDimensions={shipSquareDimensions}
+    >
+      {renderShipSquares(size)}
+    </StyledShip>
+  );
+};
 
 export default Ship;
