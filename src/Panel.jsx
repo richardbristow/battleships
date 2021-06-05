@@ -7,7 +7,7 @@ const shipSize = [2, 3, 3, 4, 5];
 const StyledPanel = styled.div`
   flex: 20%;
   border: 1px solid lightblue;
-  height: 100%;
+  min-height: 100%;
   display: flex;
   flex-wrap: wrap;
   padding: 20px;
