@@ -8,7 +8,7 @@ const StyledContainer = styled.div`
 
   legend {
     font-size: 0.8em;
-    width: 0%;
+    width: auto;
     padding: 0px 4px;
     margin: 0px;
   }
