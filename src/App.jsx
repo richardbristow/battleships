@@ -11,7 +11,7 @@ const StyledGameWrapper = styled.div`
   gap: 20px;
 `;
 
-const StyledGridContainer = styled.div`
+const StyledGridWrapper = styled.div`
   flex: 80%;
   height: 100%;
   display: flex;
@@ -26,10 +26,10 @@ const App = () => {
       <Header />
       <StyledGameWrapper>
         <CommandPanel shipSquareDimensions={{ width, height }} />
-        <StyledGridContainer>
+        <StyledGridWrapper>
           <Grid ref={ref} />
           <Grid />
-        </StyledGridContainer>
+        </StyledGridWrapper>
       </StyledGameWrapper>
     </>
   );
