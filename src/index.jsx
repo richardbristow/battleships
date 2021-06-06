@@ -4,6 +4,7 @@ import { Normalize } from 'styled-normalize';
 import styled, { createGlobalStyle } from 'styled-components/macro';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import 'nes.css/css/nes.min.css';
 
 import App from './App';
 
