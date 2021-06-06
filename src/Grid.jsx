@@ -2,22 +2,30 @@ import { forwardRef } from 'react';
 import styled from 'styled-components/macro';
 
 import GridSquare from './GridSquare';
+import Container from './Container';
 
-const StyledGrid = styled.div`
+const StyledContainer = styled(Container)`
   flex: 50%;
-  padding: 1px;
-  border: 1px solid lightblue;
+
+  fieldset {
+    padding: 12px;
+  }
+`;
+
+const StyledGridSquareWrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 `;
 
-const Grid = forwardRef((_, ref) => (
-  <StyledGrid ref={ref}>
-    {[...Array(100).keys()].map((_, index) => (
-      <GridSquare key={`gridsquare-${index}`} />
-    ))}
-  </StyledGrid>
+const Grid = forwardRef(({ type }, ref) => (
+  <StyledContainer title={type}>
+    <StyledGridSquareWrapper ref={ref}>
+      {[...Array(100).keys()].map((_, index) => (
+        <GridSquare key={`gridsquare-${index}`} />
+      ))}
+    </StyledGridSquareWrapper>
+  </StyledContainer>
 ));
 
 export default Grid;

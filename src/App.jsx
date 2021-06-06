@@ -27,8 +27,8 @@ const App = () => {
       <StyledGameWrapper>
         <CommandPanel shipSquareDimensions={{ width, height }} />
         <StyledGridWrapper>
-          <Grid ref={ref} />
-          <Grid />
+          <Grid type="Player" ref={ref} />
+          <Grid type="Opponent" />
         </StyledGridWrapper>
       </StyledGameWrapper>
     </>
