@@ -4,6 +4,7 @@ import { Normalize } from 'styled-normalize';
 import styled, { createGlobalStyle } from 'styled-components/macro';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { BrowserRouter as Router } from 'react-router-dom';
 import 'nes.css/css/nes.min.css';
 
 import App from './App';
@@ -27,13 +28,15 @@ const StyledWrapper = styled.div`
 
 ReactDOM.render(
   <React.StrictMode>
-    <Normalize />
-    <GlobalStyle />
-    <DndProvider backend={HTML5Backend}>
-      <StyledWrapper>
-        <App />
-      </StyledWrapper>
-    </DndProvider>
+    <Router>
+      <Normalize />
+      <GlobalStyle />
+      <DndProvider backend={HTML5Backend}>
+        <StyledWrapper>
+          <App />
+        </StyledWrapper>
+      </DndProvider>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root'),
 );

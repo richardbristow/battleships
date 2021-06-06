@@ -1,9 +1,13 @@
 import styled from 'styled-components/macro';
 import { useResizeDetector } from 'react-resize-detector';
+import { Switch, Route } from 'react-router-dom';
 
 import Header from './Header';
 import Grid from './Grid';
 import CommandPanel from './CommandPanel';
+import Rules from './Rules';
+import NavBar from './NavBar';
+import NoRoute from './NoRoute';
 
 const StyledGameWrapper = styled.div`
   display: flex;
@@ -24,13 +28,24 @@ const App = () => {
   return (
     <>
       <Header />
-      <StyledGameWrapper>
-        <CommandPanel shipSquareDimensions={{ width, height }} />
-        <StyledGridWrapper>
-          <Grid type="Player" ref={ref} />
-          <Grid type="Opponent" />
-        </StyledGridWrapper>
-      </StyledGameWrapper>
+      <NavBar />
+      <Switch>
+        <Route exact path="/">
+          <StyledGameWrapper>
+            <CommandPanel shipSquareDimensions={{ width, height }} />
+            <StyledGridWrapper>
+              <Grid type="Player" ref={ref} />
+              <Grid type="Opponent" />
+            </StyledGridWrapper>
+          </StyledGameWrapper>
+        </Route>
+        <Route path="/rules">
+          <Rules />
+        </Route>
+        <Route path="*">
+          <NoRoute />
+        </Route>
+      </Switch>
     </>
   );
 };
