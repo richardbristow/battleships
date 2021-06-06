@@ -5,7 +5,7 @@ import Header from './Header';
 import Grid from './Grid';
 import CommandPanel from './CommandPanel';
 
-const StyledGameContainer = styled.div`
+const StyledGameWrapper = styled.div`
   display: flex;
   flex-direction: row;
   gap: 20px;
@@ -24,13 +24,13 @@ const App = () => {
   return (
     <>
       <Header />
-      <StyledGameContainer>
+      <StyledGameWrapper>
         <CommandPanel shipSquareDimensions={{ width, height }} />
         <StyledGridContainer>
           <Grid ref={ref} />
           <Grid />
         </StyledGridContainer>
-      </StyledGameContainer>
+      </StyledGameWrapper>
     </>
   );
 };
