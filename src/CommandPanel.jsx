@@ -1,14 +1,16 @@
 import styled from 'styled-components/macro';
 
 import Ship from './Ship';
+import Container from './Container';
 
 const shipSize = [2, 3, 3, 4, 5];
 
-const StyledCommandPanel = styled.div`
+const StyledContainer = styled(Container)`
   flex: 20%;
-  border: 1px solid lightblue;
-  padding: 20px;
-  min-height: 100%;
+
+  fieldset {
+    min-height: 100%;
+  }
 `;
 
 const StyledInfoPanel = styled.div`
@@ -27,10 +29,10 @@ const StyledShipPanel = styled.div`
 `;
 
 const CommandPanel = ({ shipSquareDimensions }) => (
-  <StyledCommandPanel>
+  <StyledContainer title="Command">
     <StyledInfoPanel>
       <p>Place your ships on the player grid to begin.</p>
-      <p>Double click/tap on the ships to rotate before placment.</p>
+      <p>Double click/tap on the ships to rotate before placement.</p>
     </StyledInfoPanel>
     <StyledShipPanel>
       {shipSize.map((size, index) => (
@@ -41,7 +43,7 @@ const CommandPanel = ({ shipSquareDimensions }) => (
         />
       ))}
     </StyledShipPanel>
-  </StyledCommandPanel>
+  </StyledContainer>
 );
 
 export default CommandPanel;
