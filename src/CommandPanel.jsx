@@ -12,10 +12,8 @@ const StyledCommandPanel = styled.div`
 `;
 
 const StyledInfoPanel = styled.div`
-  color: white;
   padding-bottom: 4px;
   p {
-    font-family: 'Press Start 2P', cursive;
     font-size: 0.8em;
     margin-top: 0px;
   }

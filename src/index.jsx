@@ -9,7 +9,9 @@ import App from './App';
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background-color: black;
+    background-color: #212529;
+    font-family: 'Press Start 2P', cursive;
+    color: white;
   }
 
   * {
