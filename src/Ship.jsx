@@ -5,7 +5,7 @@ import { useDrag } from 'react-dnd';
 const StyledShip = styled.div`
   display: flex;
   flex-direction: ${({ isVertical }) => (isVertical ? 'column' : 'row')};
-  border-top: 1px solid white;
+  border-top: 4px solid white;
   cursor: move;
   opacity: ${({ isDragging }) => (isDragging ? '0.5' : '1')};
 
@@ -19,27 +19,36 @@ const StyledShip = styled.div`
     ${({ isVertical }) =>
       isVertical
         ? `
-        border-left: 1px solid white;
-        border-right: 1px solid white;`
+        border-left: 4px solid white;
+        border-right: 4px solid white;`
         : `
-        border-bottom: 1px solid white;
+        border-bottom: 4px solid white;
         &:first-child {
-          border-left: 1px solid white;
+          border-left: 4px solid white;
         };`}
 
     &:last-child {
       ${({ isVertical }) =>
         isVertical
-          ? 'border-bottom: 1px solid white;'
-          : 'border-right: 1px solid white;'}
+          ? 'border-bottom: 4px solid white;'
+          : 'border-right: 4px solid white;'}
     }
   }
 `;
 
-const renderShipSquares = (size) => {
+const StyledShipSquare = styled.div`
+  ${({ isVertical }) =>
+    isVertical
+      ? 'border-bottom: 2px solid white;'
+      : 'border-right: 2px solid white;'}
+`;
+
+const renderShipSquares = (size, isVertical) => {
   const shipSquares = [];
   for (let index = 0; index < size; index++) {
-    shipSquares.push(<div key={`shipSquare-${index}`} />);
+    shipSquares.push(
+      <StyledShipSquare isVertical={isVertical} key={`shipSquare-${index}`} />,
+    );
   }
   return shipSquares;
 };
@@ -63,7 +72,7 @@ const Ship = ({ size, shipSquareDimensions }) => {
       ref={drag}
       shipSquareDimensions={shipSquareDimensions}
     >
-      {renderShipSquares(size)}
+      {renderShipSquares(size, isVertical)}
     </StyledShip>
   );
 };
