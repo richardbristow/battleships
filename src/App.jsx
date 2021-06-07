@@ -16,7 +16,7 @@ const StyledGameWrapper = styled.div`
 `;
 
 const StyledGridWrapper = styled.div`
-  flex: 80%;
+  flex: 78%;
   height: 100%;
   display: flex;
   gap: 20px;

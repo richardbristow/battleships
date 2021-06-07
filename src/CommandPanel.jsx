@@ -6,7 +6,7 @@ import Container from './Container';
 const shipSize = [2, 3, 3, 4, 5];
 
 const StyledContainer = styled(Container)`
-  flex: 20%;
+  flex: 22%;
 
   fieldset {
     min-height: 100%;
