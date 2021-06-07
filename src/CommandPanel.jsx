@@ -31,7 +31,7 @@ const StyledShipPanel = styled.div`
 const CommandPanel = ({ shipSquareDimensions }) => (
   <StyledContainer title="Command">
     <StyledInfoPanel>
-      <p>Place your ships on the player grid to begin.</p>
+      <p>Place ships on the player grid to begin.</p>
       <p>Double click/tap on the ships to rotate before placement.</p>
     </StyledInfoPanel>
     <StyledShipPanel>
