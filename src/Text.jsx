@@ -3,6 +3,15 @@ import styled from 'styled-components/macro';
 
 const StyledText = styled.div`
   display: flex;
+  margin-bottom: 16px;
+
+  p {
+    margin: 0px;
+  }
+
+  &.passed-elements {
+    align-items: center;
+  }
 
   .marker {
     padding-right: 16px;
@@ -11,11 +20,16 @@ const StyledText = styled.div`
 
 const Text = ({ marker, children, textElementTag }) => {
   const CustomElement = textElementTag;
+  const isObject = typeof children === 'object';
 
   return (
-    <StyledText>
+    <StyledText className={isObject && 'passed-elements'}>
       {marker && <span className="marker">{marker}</span>}
-      <CustomElement>{children}</CustomElement>
+      {isObject ? (
+        <div>{children}</div>
+      ) : (
+        <CustomElement>{children}</CustomElement>
+      )}
     </StyledText>
   );
 };
