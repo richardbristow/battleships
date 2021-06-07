@@ -1,4 +1,9 @@
 import { render, screen } from '@testing-library/react';
+import { Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { DndProvider } from 'react-dnd';
+
 import App from './App';
 
 const { ResizeObserver } = window;
@@ -18,7 +23,14 @@ afterEach(() => {
 });
 
 test('renders header', () => {
-  render(<App />);
+  const history = createMemoryHistory();
+  render(
+    <Router history={history}>
+      <DndProvider backend={HTML5Backend}>
+        <App />
+      </DndProvider>
+    </Router>,
+  );
   const headerElement = screen.getByText('BATTLESHIPS');
   expect(headerElement).toBeInTheDocument();
 });
