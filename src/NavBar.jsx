@@ -2,10 +2,14 @@ import styled from 'styled-components/macro';
 import NavLinkCustom from './NavLinkCustom';
 
 const StyledNavbar = styled.nav`
-  text-align: center;
+  margin-bottom: 25px;
 
   ul {
     list-style-type: none;
+    display: flex;
+    justify-content: center;
+    padding: 0px;
+    margin: 0px;
   }
 `;
 
