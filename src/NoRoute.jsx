@@ -23,7 +23,7 @@ const NoRoute = () => {
 
   useEffect(() => {
     if (timeLeft === 0) {
-      // history.push('/');
+      history.push('/');
       return;
     }
     const timerID = setInterval(() => setTimeLeft(timeLeft - 1), 1000);
