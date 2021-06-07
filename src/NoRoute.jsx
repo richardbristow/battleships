@@ -1,7 +1,43 @@
-const NoRoute = () => (
-  <div>
-    <p>404 :(</p>
-  </div>
-);
+import { useEffect, useState } from 'react';
+import styled from 'styled-components/macro';
+import { useHistory } from 'react-router';
+
+import LinkCustom from './LinkCustom';
+import Container from './Container';
+import sadSmileyWhite from './assets/sad-smiley-white.png';
+
+const StyledNoRoute = styled(Container)`
+  img {
+    height: 50px;
+  }
+`;
+
+const NoRoute = () => {
+  const [timeLeft, setTimeLeft] = useState(10);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (timeLeft === 0) {
+      history.push('/');
+      return;
+    }
+    const timerID = setInterval(() => setTimeLeft(timeLeft - 1), 1000);
+
+    return () => clearInterval(timerID);
+  }, [history, timeLeft]);
+
+  return (
+    <StyledNoRoute title="Error: 404">
+      <p>
+        &gt; <img src={sadSmileyWhite} alt="error 404 page not found" />
+      </p>
+      <p>&gt; Whoops! You've stumbled upon a page that doesn't exist.</p>
+      <p>
+        &gt; You'll be redirected back <LinkCustom to="/">home</LinkCustom>{' '}
+        in... {timeLeft} seconds.
+      </p>
+    </StyledNoRoute>
+  );
+};
 
 export default NoRoute;
