@@ -6,6 +6,7 @@ import LinkCustom from './LinkCustom';
 import Container from './Container';
 import sadSmileyWhite from './assets/sad-smiley-white.png';
 import Progress from './Progress';
+import Text from './Text';
 
 const StyledNoRoute = styled(Container)`
   img {
@@ -33,14 +34,18 @@ const NoRoute = () => {
 
   return (
     <StyledNoRoute title="Error: 404">
-      <p>
-        &gt; <img src={sadSmileyWhite} alt="error 404 page not found" />
-      </p>
-      <p>&gt; Whoops! You've stumbled upon a page that doesn't exist.</p>
-      <p>
-        &gt; You'll be redirected back <LinkCustom to="/">home</LinkCustom>{' '}
-        in... {timeLeft} seconds.
-      </p>
+      <Text marker="&gt;">
+        <img src={sadSmileyWhite} alt="error 404 page not found" />
+      </Text>
+      <Text marker="&gt;">
+        Whoops! You've stumbled upon a page that doesn't exist.
+      </Text>
+      <Text marker="&gt;">
+        <p>
+          You'll be redirected back <LinkCustom to="/">home</LinkCustom> in...{' '}
+          {timeLeft} seconds.
+        </p>
+      </Text>
       <Progress dark type="is-warning" value={(10 - timeLeft) * 10} max="100" />
     </StyledNoRoute>
   );
