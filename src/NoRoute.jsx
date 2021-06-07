@@ -5,10 +5,15 @@ import { useHistory } from 'react-router';
 import LinkCustom from './LinkCustom';
 import Container from './Container';
 import sadSmileyWhite from './assets/sad-smiley-white.png';
+import Progress from './Progress';
 
 const StyledNoRoute = styled(Container)`
   img {
     height: 50px;
+  }
+
+  progress {
+    margin-top: 20px;
   }
 `;
 
@@ -18,7 +23,7 @@ const NoRoute = () => {
 
   useEffect(() => {
     if (timeLeft === 0) {
-      history.push('/');
+      // history.push('/');
       return;
     }
     const timerID = setInterval(() => setTimeLeft(timeLeft - 1), 1000);
@@ -36,6 +41,7 @@ const NoRoute = () => {
         &gt; You'll be redirected back <LinkCustom to="/">home</LinkCustom>{' '}
         in... {timeLeft} seconds.
       </p>
+      <Progress dark type="is-warning" value={(10 - timeLeft) * 10} max="100" />
     </StyledNoRoute>
   );
 };
