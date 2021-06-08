@@ -1,8 +1,14 @@
 import styled from 'styled-components/macro';
+import theme from 'styled-theming';
+
+const borderColor = theme('mode', {
+  light: '#212529',
+  dark: '#fff',
+});
 
 const StyledContainer = styled.div`
   fieldset {
-    border: 4px solid white;
+    border: 4px solid ${borderColor};
     padding: 20px;
   }
 
