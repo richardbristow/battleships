@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 import theme from 'styled-theming';
 
 const linkColor = theme('mode', {
@@ -8,15 +8,23 @@ const linkColor = theme('mode', {
 });
 
 const StyledLink = styled(Link)`
-  color: ${({ $noDecoration }) => $noDecoration && linkColor};
+  ${({ $noDecoration }) =>
+    $noDecoration &&
+    css`
+      color: ${linkColor};
+    `}
 
   &:focus,
   &:hover,
   &:visited,
   &:link,
   &:active {
-    ${({ $noDecoration }) => $noDecoration && 'text-decoration: none;'}
-    color: ${({ $noDecoration }) => $noDecoration && linkColor};
+    ${({ $noDecoration }) =>
+      $noDecoration &&
+      css`
+        color: ${linkColor};
+        text-decoration: none;
+      `}
   }
 `;
 
