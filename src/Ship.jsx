@@ -1,12 +1,20 @@
 import { useState } from 'react';
-import styled from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 import { useDrag } from 'react-dnd';
+import theme from 'styled-theming';
+
+import draggerBlackCursor from './assets/dragger-black-cursor.png';
+
+const borderColor = theme('mode', {
+  light: '#212529',
+  dark: '#fff',
+});
 
 const StyledShip = styled.div`
   display: flex;
   flex-direction: ${({ isVertical }) => (isVertical ? 'column' : 'row')};
-  border-top: 4px solid white;
-  cursor: move;
+  border-top: 4px solid ${borderColor};
+  cursor: url(${draggerBlackCursor}), move;
   opacity: ${({ isDragging }) => (isDragging ? '0.5' : '1')};
 
   div {
@@ -18,20 +26,26 @@ const StyledShip = styled.div`
 
     ${({ isVertical }) =>
       isVertical
-        ? `
-        border-left: 4px solid white;
-        border-right: 4px solid white;`
-        : `
-        border-bottom: 4px solid white;
-        &:first-child {
-          border-left: 4px solid white;
-        };`}
+        ? css`
+            border-left: 4px solid ${borderColor};
+            border-right: 4px solid ${borderColor};
+          `
+        : css`
+            border-bottom: 4px solid ${borderColor};
+            &:first-child {
+              border-left: 4px solid ${borderColor};
+            }
+          `}
 
     &:last-child {
       ${({ isVertical }) =>
         isVertical
-          ? 'border-bottom: 4px solid white;'
-          : 'border-right: 4px solid white;'}
+          ? css`
+              border-bottom: 4px solid ${borderColor};
+            `
+          : css`
+              border-right: 4px solid ${borderColor};
+            `}
     }
   }
 `;
@@ -39,8 +53,12 @@ const StyledShip = styled.div`
 const StyledShipSquare = styled.div`
   ${({ isVertical }) =>
     isVertical
-      ? 'border-bottom: 2px solid white;'
-      : 'border-right: 2px solid white;'}
+      ? css`
+          border-bottom: 2px solid ${borderColor};
+        `
+      : css`
+          border-right: 2px solid ${borderColor};
+        `}
 `;
 
 const renderShipSquares = (size, isVertical) => {
