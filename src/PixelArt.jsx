@@ -46,7 +46,7 @@ PixelArt.defaultProps = {
 
 PixelArt.propTypes = {
   name: PropTypes.string.isRequired,
-  theme: PropTypes.string.isRequired,
+  theme: PropTypes.shape({ mode: PropTypes.string }).isRequired,
   overrideTheme: PropTypes.oneOf(['light', 'dark']),
   height: PropTypes.string,
   alt: PropTypes.string,
