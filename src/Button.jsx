@@ -1,6 +1,28 @@
 import PropTypes from 'prop-types';
+import styled, { css } from 'styled-components/macro';
+import theme from 'styled-theming';
 
 import PixelArt from './PixelArt';
+
+const buttonTextColor = theme('mode', {
+  light: '#212529',
+  dark: '#fff',
+});
+
+const StyledButton = styled.button`
+  ${({ noDecoration }) =>
+    noDecoration &&
+    css`
+      border: none;
+      background-color: transparent;
+      color: ${buttonTextColor};
+      padding: 0px;
+      outline: none;
+      &:focus {
+        outline: none;
+      }
+    `}
+`;
 
 const Button = ({
   label,
@@ -9,11 +31,17 @@ const Button = ({
   pixelArt,
   pixelArtHeight,
   pixelArtOverrideTheme,
+  noDecoration,
 }) => {
   const buttonClass = type === 'is-normal' ? 'nes-btn' : `nes-btn ${type}`;
 
   return (
-    <button onClick={onClick} type="button" className={type && buttonClass}>
+    <StyledButton
+      onClick={onClick}
+      type="button"
+      className={type && buttonClass}
+      noDecoration={noDecoration}
+    >
       {pixelArt && (
         <PixelArt
           name={pixelArt}
@@ -22,7 +50,7 @@ const Button = ({
         />
       )}
       {label}
-    </button>
+    </StyledButton>
   );
 };
 
