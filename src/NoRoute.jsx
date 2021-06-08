@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import styled, { withTheme } from 'styled-components/macro';
+import styled from 'styled-components/macro';
 import { useHistory } from 'react-router';
 
 import LinkCustom from './LinkCustom';
@@ -14,7 +14,7 @@ const StyledNoRoute = styled(Container)`
   }
 `;
 
-const NoRoute = ({ theme }) => {
+const NoRoute = () => {
   const [timeLeft, setTimeLeft] = useState(10);
   const history = useHistory();
 
@@ -33,7 +33,6 @@ const NoRoute = ({ theme }) => {
       <Text marker="&gt;">
         <PixelArt
           name="sadSmiley"
-          theme={theme.mode}
           alt="error 404 page not found"
           height="50px"
         />
@@ -52,4 +51,4 @@ const NoRoute = ({ theme }) => {
   );
 };
 
-export default withTheme(NoRoute);
+export default NoRoute;
