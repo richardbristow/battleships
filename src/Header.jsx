@@ -1,4 +1,4 @@
-import styled, { withTheme } from 'styled-components/macro';
+import styled from 'styled-components/macro';
 
 import PixelArt from './PixelArt';
 
@@ -12,16 +12,11 @@ const StyledHeader = styled.div`
   }
 `;
 
-const Header = ({ theme }) => (
+const Header = () => (
   <StyledHeader>
     <h1>BATTLESHIPS</h1>
-    <PixelArt
-      name="crossHair"
-      theme={theme.mode}
-      alt="header crosshair"
-      height="2.5em"
-    />
+    <PixelArt name="crossHair" alt="header crosshair" height="2.5em" />
   </StyledHeader>
 );
 
-export default withTheme(Header);
+export default Header;
