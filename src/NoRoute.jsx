@@ -46,7 +46,7 @@ const NoRoute = () => {
           {timeLeft} seconds.
         </p>
       </Text>
-      <Progress dark type="is-warning" value={(10 - timeLeft) * 10} max="100" />
+      <Progress type="is-warning" value={(10 - timeLeft) * 10} max="100" />
     </StyledNoRoute>
   );
 };
