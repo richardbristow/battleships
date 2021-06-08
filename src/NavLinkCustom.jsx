@@ -1,4 +1,4 @@
-import styled, { withTheme } from 'styled-components/macro';
+import styled from 'styled-components/macro';
 import { useRouteMatch } from 'react-router-dom';
 
 import LinkCustom from './LinkCustom';
@@ -18,7 +18,7 @@ const StyledNavLinkCustom = styled.li`
   }
 `;
 
-const NavLinkCustom = ({ label, to, theme }) => {
+const NavLinkCustom = ({ label, to }) => {
   const match = useRouteMatch({
     path: to,
     exact: true,
@@ -30,7 +30,6 @@ const NavLinkCustom = ({ label, to, theme }) => {
         {match && (
           <PixelArt
             name="caretRight"
-            theme={theme.mode}
             alt="selected navigation link"
             height="25px"
           />
@@ -43,4 +42,4 @@ const NavLinkCustom = ({ label, to, theme }) => {
   );
 };
 
-export default withTheme(NavLinkCustom);
+export default NavLinkCustom;
