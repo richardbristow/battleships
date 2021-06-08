@@ -1,5 +1,6 @@
-import styled from 'styled-components/macro';
-import crosshairRed from './assets/crosshair-red.png';
+import styled, { withTheme } from 'styled-components/macro';
+
+import PixelArt from './PixelArt';
 
 const StyledHeader = styled.div`
   display: flex;
@@ -8,15 +9,19 @@ const StyledHeader = styled.div`
 
   img {
     margin-left: 5px;
-    height: 2.5em;
   }
 `;
 
-const Header = () => (
+const Header = ({ theme }) => (
   <StyledHeader>
     <h1>BATTLESHIPS</h1>
-    <img src={crosshairRed} alt="header crosshair" />
+    <PixelArt
+      name="crossHair"
+      theme={theme.mode}
+      alt="header crosshair"
+      height="2.5em"
+    />
   </StyledHeader>
 );
 
-export default Header;
+export default withTheme(Header);
