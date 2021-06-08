@@ -23,12 +23,12 @@ const pixelArtAssets = {
 };
 
 const StyledPixelArt = styled.img`
-  height: ${({ height }) => `${height}`};
+  height: ${({ $height }) => `${$height}`};
 `;
 
 const PixelArt = ({ name, theme, height, alt }) => (
   <StyledPixelArt
-    height={height}
+    $height={height}
     src={pixelArtAssets[name][theme]}
     alt={alt ? alt : name}
   />
