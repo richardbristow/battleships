@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled, { withTheme } from 'styled-components/macro';
 import PropTypes from 'prop-types';
 
 import caretRightBlack from './assets/caret-right-black.png';
@@ -26,24 +26,30 @@ const StyledPixelArt = styled.img`
   height: ${({ $height }) => `${$height}`};
 `;
 
-const PixelArt = ({ name, theme, height, alt }) => (
-  <StyledPixelArt
-    $height={height}
-    src={pixelArtAssets[name][theme]}
-    alt={alt ? alt : name}
-  />
-);
+const PixelArt = ({ name, theme, height, alt, overrideTheme }) => {
+  const pixelArtTheme = overrideTheme ? overrideTheme : theme.mode;
+
+  return (
+    <StyledPixelArt
+      $height={height}
+      src={pixelArtAssets[name][pixelArtTheme]}
+      alt={alt ? alt : name}
+    />
+  );
+};
 
 PixelArt.defaultProps = {
   height: '50px',
   alt: null,
+  overrideTheme: null,
 };
 
 PixelArt.propTypes = {
   name: PropTypes.string.isRequired,
   theme: PropTypes.string.isRequired,
+  overrideTheme: PropTypes.oneOf(['light', 'dark']),
   height: PropTypes.string,
   alt: PropTypes.string,
 };
 
-export default PixelArt;
+export default withTheme(PixelArt);
