@@ -6,6 +6,10 @@ import caretRightWhite from './assets/caret-right-white.png';
 import crosshairRed from './assets/crosshair-red.png';
 import sadSmileyWhite from './assets/sad-smiley-white.png';
 import sadSmileyBlack from './assets/sad-smiley-black.png';
+import moonWhite from './assets/moon-white.png';
+import moonBlack from './assets/moon-black.png';
+import sunWhite from './assets/sun-white.png';
+import sunBlack from './assets/sun-black.png';
 
 const pixelArtAssets = {
   caretRight: {
@@ -19,6 +23,14 @@ const pixelArtAssets = {
   crossHair: {
     light: crosshairRed,
     dark: crosshairRed,
+  },
+  moon: {
+    light: moonBlack,
+    dark: moonWhite,
+  },
+  sun: {
+    light: sunBlack,
+    dark: sunWhite,
   },
 };
 
