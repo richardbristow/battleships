@@ -1,8 +1,9 @@
-import styled from 'styled-components/macro';
+import styled, { withTheme } from 'styled-components/macro';
 import { useRouteMatch } from 'react-router-dom';
 
 import LinkCustom from './LinkCustom';
 import caretRightWhite from './assets/caret-right-white.png';
+import caretRightBlack from './assets/caret-right-black.png';
 
 const StyledNavLinkCustom = styled.li`
   display: flex;
@@ -22,7 +23,7 @@ const StyledNavLinkCustom = styled.li`
   }
 `;
 
-const NavLinkCustom = ({ label, to }) => {
+const NavLinkCustom = ({ label, to, theme }) => {
   const match = useRouteMatch({
     path: to,
     exact: true,
@@ -31,7 +32,12 @@ const NavLinkCustom = ({ label, to }) => {
   return (
     <StyledNavLinkCustom>
       <div>
-        {match && <img src={caretRightWhite} alt="selected navigation link" />}
+        {match && theme.mode === 'dark' && (
+          <img src={caretRightWhite} alt="selected navigation link" />
+        )}
+        {match && theme.mode === 'light' && (
+          <img src={caretRightBlack} alt="selected navigation link" />
+        )}
       </div>
       <LinkCustom noDecoration to={to}>
         {label}
@@ -40,4 +46,4 @@ const NavLinkCustom = ({ label, to }) => {
   );
 };
 
-export default NavLinkCustom;
+export default withTheme(NavLinkCustom);
