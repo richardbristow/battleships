@@ -1,24 +1,20 @@
 import { useEffect, useState } from 'react';
-import styled from 'styled-components/macro';
+import styled, { withTheme } from 'styled-components/macro';
 import { useHistory } from 'react-router';
 
 import LinkCustom from './LinkCustom';
 import Container from './Container';
-import sadSmileyWhite from './assets/sad-smiley-white.png';
+import PixelArt from './PixelArt';
 import Progress from './Progress';
 import Text from './Text';
 
 const StyledNoRoute = styled(Container)`
-  img {
-    height: 50px;
-  }
-
   progress {
     margin-top: 20px;
   }
 `;
 
-const NoRoute = () => {
+const NoRoute = ({ theme }) => {
   const [timeLeft, setTimeLeft] = useState(10);
   const history = useHistory();
 
@@ -35,7 +31,12 @@ const NoRoute = () => {
   return (
     <StyledNoRoute title="Error: 404">
       <Text marker="&gt;">
-        <img src={sadSmileyWhite} alt="error 404 page not found" />
+        <PixelArt
+          name="sadSmiley"
+          theme={theme.mode}
+          alt="error 404 page not found"
+          height="50px"
+        />
       </Text>
       <Text marker="&gt;">
         Whoops! You've stumbled upon a page that doesn't exist.
@@ -51,4 +52,4 @@ const NoRoute = () => {
   );
 };
 
-export default NoRoute;
+export default withTheme(NoRoute);
