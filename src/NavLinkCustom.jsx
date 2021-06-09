@@ -16,6 +16,16 @@ const StyledNavLinkCustom = styled.li`
     width: 25px;
     margin-right: 5px;
   }
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .blink {
+    animation: blink 1s step-start 0.5s 2;
+  }
 `;
 
 const NavLinkCustom = ({ label, to }) => {
@@ -29,6 +39,7 @@ const NavLinkCustom = ({ label, to }) => {
       <div>
         {match && (
           <PixelArt
+            className="blink"
             name="caretRight"
             alt="selected navigation link"
             height="25px"
