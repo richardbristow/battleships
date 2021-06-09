@@ -38,11 +38,12 @@ const StyledPixelArt = styled.img`
   height: ${({ $height }) => `${$height}`};
 `;
 
-const PixelArt = ({ name, theme, height, alt, overrideTheme }) => {
+const PixelArt = ({ className, name, theme, height, alt, overrideTheme }) => {
   const pixelArtTheme = overrideTheme ? overrideTheme : theme.mode;
 
   return (
     <StyledPixelArt
+      className={className}
       $height={height}
       src={pixelArtAssets[name][pixelArtTheme]}
       alt={alt ? alt : name}
@@ -54,6 +55,7 @@ PixelArt.defaultProps = {
   height: '50px',
   alt: null,
   overrideTheme: null,
+  className: null,
 };
 
 PixelArt.propTypes = {
@@ -62,6 +64,7 @@ PixelArt.propTypes = {
   overrideTheme: PropTypes.oneOf(['light', 'dark']),
   height: PropTypes.string,
   alt: PropTypes.string,
+  className: PropTypes.string,
 };
 
 export default withTheme(PixelArt);
