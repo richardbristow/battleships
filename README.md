@@ -6,7 +6,7 @@
 
 ## **WORK IN PROGRESS**
 
-A web app to play battlehips in the browser.
+A web app to play battleships in the browser.
 
 ## Installation
 
