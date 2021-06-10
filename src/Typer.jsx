@@ -4,20 +4,20 @@ import Text from './Text';
 
 const TyperText = ({ characterDelay, typerChild }) => {
   const [text, setText] = useState('');
-  const [index, setIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
 
   useEffect(() => {
     const timerID = setTimeout(() => {
-      setText(text + typerChild.props.children[index]);
-      setIndex(index + 1);
+      setText(text + typerChild.props.children[charIndex]);
+      setCharIndex(charIndex + 1);
     }, characterDelay);
 
-    if (index >= typerChild.props.children.length) {
+    if (charIndex >= typerChild.props.children.length) {
       clearTimeout(timerID);
     }
 
     return () => clearTimeout(timerID);
-  }, [typerChild.props.children, characterDelay, index, text]);
+  }, [typerChild.props.children, characterDelay, charIndex, text]);
 
   return (
     <Text
