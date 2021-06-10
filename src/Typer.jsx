@@ -42,10 +42,9 @@ const TyperText = ({ characterDelay, typerChild }) => {
 const Typer = ({ characterDelay, children }) =>
   React.Children.map(children, (child) => {
     const clonedChild = React.cloneElement(child, {
-      children:
-        typeof child.props.children === 'string'
-          ? [child.props.children]
-          : child.props.children,
+      children: Array.isArray(child.props.children)
+        ? child.props.children
+        : [child.props.children],
     });
 
     return (
