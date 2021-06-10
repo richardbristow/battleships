@@ -5,19 +5,29 @@ import Text from './Text';
 const TyperText = ({ characterDelay, typerChild }) => {
   const [text, setText] = useState('');
   const [charIndex, setCharIndex] = useState(0);
+  const [typerChildIndex, setTyperChildIndex] = useState(0);
 
   useEffect(() => {
     const timerID = setTimeout(() => {
-      setText(text + typerChild.props.children[charIndex]);
+      setText(text + typerChild.props.children[typerChildIndex][charIndex]);
       setCharIndex(charIndex + 1);
     }, characterDelay);
 
-    if (charIndex >= typerChild.props.children.length) {
+    if (charIndex >= typerChild.props.children[typerChildIndex].length) {
       clearTimeout(timerID);
+      if (typerChildIndex < typerChild.props.children.length - 1) {
+        setTyperChildIndex(typerChildIndex + 1);
+      }
     }
 
     return () => clearTimeout(timerID);
-  }, [typerChild.props.children, characterDelay, charIndex, text]);
+  }, [
+    charIndex,
+    characterDelay,
+    text,
+    typerChild.props.children,
+    typerChildIndex,
+  ]);
 
   return (
     <Text
@@ -30,8 +40,17 @@ const TyperText = ({ characterDelay, typerChild }) => {
 };
 
 const Typer = ({ characterDelay, children }) =>
-  React.Children.map(children, (child) => (
-    <TyperText characterDelay={characterDelay} typerChild={child} />
-  ));
+  React.Children.map(children, (child) => {
+    const clonedChild = React.cloneElement(child, {
+      children:
+        typeof child.props.children === 'string'
+          ? [child.props.children]
+          : child.props.children,
+    });
+
+    return (
+      <TyperText characterDelay={characterDelay} typerChild={clonedChild} />
+    );
+  });
 
 export { Typer, TyperText };
