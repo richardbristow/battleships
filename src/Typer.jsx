@@ -2,27 +2,27 @@ import React, { useEffect, useState } from 'react';
 
 import Text from './Text';
 
-const TyperText = ({ characterDelay, child }) => {
+const TyperText = ({ characterDelay, typerChild }) => {
   const [text, setText] = useState('');
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
     const timerID = setTimeout(() => {
-      setText(text + child.props.children[index]);
+      setText(text + typerChild.props.children[index]);
       setIndex(index + 1);
     }, characterDelay);
 
-    if (index >= child.props.children.length) {
+    if (index >= typerChild.props.children.length) {
       clearTimeout(timerID);
     }
 
     return () => clearTimeout(timerID);
-  }, [child.props.children, characterDelay, index, text]);
+  }, [typerChild.props.children, characterDelay, index, text]);
 
   return (
     <Text
-      marker={child.props.marker}
-      textElementTag={child.props.textElementTag}
+      marker={typerChild.props.marker}
+      textElementTag={typerChild.props.textElementTag}
     >
       {text}
     </Text>
@@ -31,7 +31,7 @@ const TyperText = ({ characterDelay, child }) => {
 
 const Typer = ({ characterDelay, children }) =>
   React.Children.map(children, (child) => (
-    <TyperText characterDelay={characterDelay} child={child} />
+    <TyperText characterDelay={characterDelay} typerChild={child} />
   ));
 
 export { Typer, TyperText };
