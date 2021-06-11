@@ -3,19 +3,31 @@ import React, { useEffect, useState } from 'react';
 import Text from './Text';
 
 const TyperText = ({ characterDelay, typerChild }) => {
-  const [text, setText] = useState('');
+  const [text, setText] = useState([]);
   const [charIndex, setCharIndex] = useState(0);
   const [typerChildIndex, setTyperChildIndex] = useState(0);
 
   useEffect(() => {
+    const currentChild = typerChild.props.children[typerChildIndex];
     const timerID = setTimeout(() => {
-      setText(text + typerChild.props.children[typerChildIndex][charIndex]);
-      setCharIndex(charIndex + 1);
+      if (typeof currentChild === 'string') {
+        setText([...text, currentChild[charIndex]]);
+        setCharIndex(charIndex + 1);
+      }
     }, characterDelay);
 
-    if (charIndex >= typerChild.props.children[typerChildIndex].length) {
-      clearTimeout(timerID);
-      if (typerChildIndex < typerChild.props.children.length - 1) {
+    if (currentChild) {
+      if (charIndex >= currentChild.length) {
+        clearTimeout(timerID);
+        if (typerChildIndex < typerChild.props.children.length - 1) {
+          setTyperChildIndex(typerChildIndex + 1);
+          setCharIndex(0);
+        }
+      }
+
+      if (typeof currentChild !== 'string') {
+        clearTimeout(timerID);
+        setText([...text, currentChild]);
         setTyperChildIndex(typerChildIndex + 1);
       }
     }
