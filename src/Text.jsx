@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
-import styled from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
+
+import './keyframes.css';
 
 const StyledText = styled.div`
   display: flex;
@@ -16,15 +18,28 @@ const StyledText = styled.div`
   .marker {
     padding-right: 16px;
   }
+
+  ${({ terminalText }) =>
+    terminalText &&
+    css`
+      animation: textShadow 2s infinite;
+    `}
 `;
 
-const Text = ({ className, marker, children, textElementTag }) => {
+const Text = ({
+  className,
+  marker,
+  children,
+  textElementTag,
+  terminalText,
+}) => {
   const CustomElement = textElementTag;
   const isObject = typeof children === 'object';
 
   return (
     <StyledText
       className={isObject ? `${className} passed-elements` : className}
+      terminalText={terminalText}
     >
       {marker && <span className="marker">{marker}</span>}
       {isObject ? (
@@ -40,6 +55,7 @@ Text.defaultProps = {
   marker: null,
   children: null,
   textElementTag: 'p',
+  terminalText: false,
 };
 
 Text.propTypes = {
@@ -50,6 +66,7 @@ Text.propTypes = {
     PropTypes.array,
   ]),
   textElementTag: PropTypes.string,
+  terminalText: PropTypes.bool,
 };
 
 export default Text;
