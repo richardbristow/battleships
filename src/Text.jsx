@@ -18,12 +18,14 @@ const StyledText = styled.div`
   }
 `;
 
-const Text = ({ marker, children, textElementTag }) => {
+const Text = ({ className, marker, children, textElementTag }) => {
   const CustomElement = textElementTag;
   const isObject = typeof children === 'object';
 
   return (
-    <StyledText className={isObject && 'passed-elements'}>
+    <StyledText
+      className={isObject ? `${className} passed-elements` : className}
+    >
       {marker && <span className="marker">{marker}</span>}
       {isObject ? (
         <div>{children}</div>
@@ -45,7 +47,7 @@ Text.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.element,
-    PropTypes.arrayOf(PropTypes.element),
+    PropTypes.array,
   ]),
   textElementTag: PropTypes.string,
 };
