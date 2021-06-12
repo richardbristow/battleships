@@ -1,6 +1,7 @@
 import styled from 'styled-components/macro';
 import { useRouteMatch } from 'react-router-dom';
 
+import './keyframes.css';
 import LinkCustom from './LinkCustom';
 import PixelArt from './PixelArt';
 
@@ -15,12 +16,6 @@ const StyledNavLinkCustom = styled.li`
   div {
     width: 25px;
     margin-right: 5px;
-  }
-
-  @keyframes blink {
-    50% {
-      opacity: 0;
-    }
   }
 
   .blink {
