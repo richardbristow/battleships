@@ -41,14 +41,9 @@ const TyperText = ({ characterDelay, typerChild }) => {
     typerChildIndex,
   ]);
 
-  return (
-    <Text
-      marker={typerChild.props.marker}
-      textElementTag={typerChild.props.textElementTag}
-    >
-      {text}
-    </Text>
-  );
+  return React.cloneElement(typerChild, {
+    children: text,
+  });
 };
 
 const Typer = ({ characterDelay, children }) =>
