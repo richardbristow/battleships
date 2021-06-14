@@ -7,6 +7,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import App from './App';
 import { ThemeContext } from './ThemeContext';
+import { AudioContext } from './AudioContext';
 
 const StyledWrapper = styled.div`
   max-width: 1200px;
@@ -17,13 +18,15 @@ const StyledWrapper = styled.div`
 ReactDOM.render(
   <React.StrictMode>
     <ThemeContext>
-      <Router>
-        <DndProvider backend={HTML5Backend}>
-          <StyledWrapper>
-            <App />
-          </StyledWrapper>
-        </DndProvider>
-      </Router>
+      <AudioContext>
+        <Router>
+          <DndProvider backend={HTML5Backend}>
+            <StyledWrapper>
+              <App />
+            </StyledWrapper>
+          </DndProvider>
+        </Router>
+      </AudioContext>
     </ThemeContext>
   </React.StrictMode>,
   document.getElementById('root'),

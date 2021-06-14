@@ -6,6 +6,7 @@ import { DndProvider } from 'react-dnd';
 
 import App from './App';
 import { ThemeContext } from './ThemeContext';
+import { AudioContext } from './AudioContext';
 
 const { ResizeObserver } = window;
 
@@ -27,11 +28,13 @@ test('renders header', () => {
   const history = createMemoryHistory();
   render(
     <ThemeContext>
-      <Router history={history}>
-        <DndProvider backend={HTML5Backend}>
-          <App />
-        </DndProvider>
-      </Router>
+      <AudioContext>
+        <Router history={history}>
+          <DndProvider backend={HTML5Backend}>
+            <App />
+          </DndProvider>
+        </Router>
+      </AudioContext>
     </ThemeContext>,
   );
   const headerElement = screen.getByText('BATTLESHIPS');

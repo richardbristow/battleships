@@ -3,6 +3,7 @@ import styled, { withTheme } from 'styled-components/macro';
 import PixelArt from './PixelArt';
 import Button from './Button';
 import { useTheme } from './ThemeContext';
+import { useAudio } from './AudioContext';
 
 const StyledHeader = styled.div`
   display: flex;
@@ -21,10 +22,18 @@ const StyledHeader = styled.div`
   img {
     margin-left: 5px;
   }
+
+  button {
+    margin-right: 15px;
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
 `;
 
 const Header = ({ theme }) => {
   const themeToggle = useTheme();
+  const audio = useAudio();
 
   return (
     <StyledHeader>
@@ -32,6 +41,12 @@ const Header = ({ theme }) => {
         <h1>BATTLESHIPS</h1>
         <PixelArt name="crossHair" alt="header crosshair" height="2.5em" />
       </div>
+      <Button
+        onClick={() => audio.toggle()}
+        pixelArt={audio.isMuted ? 'speakerMuted' : 'speakerSound'}
+        pixelArtHeight="1.5em"
+        noDecoration
+      />
       <Button
         onClick={() => themeToggle.toggle()}
         pixelArt={theme.mode === 'dark' ? 'sun' : 'moon'}
