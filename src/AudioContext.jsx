@@ -1,11 +1,17 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
 const AudioToggleContext = createContext();
 
 const useAudio = () => useContext(AudioToggleContext);
 
 const AudioContext = ({ children }) => {
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(
+    localStorage.getItem('battleships-isMuted') || false,
+  );
+
+  useEffect(() => {
+    localStorage.setItem('battleships-isMuted', isMuted);
+  }, [isMuted]);
 
   const toggle = () => {
     setIsMuted(!isMuted);
