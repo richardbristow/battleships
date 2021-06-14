@@ -4,6 +4,8 @@ import { useRouteMatch } from 'react-router-dom';
 import './keyframes.css';
 import LinkCustom from './LinkCustom';
 import PixelArt from './PixelArt';
+import menuNavigate from './audio/menu-navigate.wav';
+import { useAudio } from './AudioContext';
 
 const StyledNavLinkCustom = styled.li`
   display: flex;
@@ -24,13 +26,19 @@ const StyledNavLinkCustom = styled.li`
 `;
 
 const NavLinkCustom = ({ label, to }) => {
+  const { isMuted } = useAudio();
+
   const match = useRouteMatch({
     path: to,
     exact: true,
   });
 
   return (
-    <StyledNavLinkCustom>
+    <StyledNavLinkCustom
+      onClick={() => {
+        !match && !isMuted && new Audio(menuNavigate).play();
+      }}
+    >
       <div>
         {match && (
           <PixelArt
