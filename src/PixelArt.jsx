@@ -10,6 +10,10 @@ import moonWhite from './assets/moon-white.png';
 import moonBlack from './assets/moon-black.png';
 import sunWhite from './assets/sun-white.png';
 import sunBlack from './assets/sun-black.png';
+import speakerSoundBlack from './assets/speaker-sound-black.png';
+import speakerSoundWhite from './assets/speaker-sound-white.png';
+import speakerMutedWhite from './assets/speaker-muted-white.png';
+import speakerMutedBlack from './assets/speaker-muted-black.png';
 
 const pixelArtAssets = {
   caretRight: {
@@ -31,6 +35,14 @@ const pixelArtAssets = {
   sun: {
     light: sunBlack,
     dark: sunWhite,
+  },
+  speakerSound: {
+    light: speakerSoundBlack,
+    dark: speakerSoundWhite,
+  },
+  speakerMuted: {
+    light: speakerMutedBlack,
+    dark: speakerMutedWhite,
   },
 };
 
