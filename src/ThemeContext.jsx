@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Normalize } from 'styled-normalize';
 
@@ -10,8 +10,12 @@ const useTheme = () => useContext(ThemeToggleContext);
 
 const ThemeContext = ({ children }) => {
   const [theme, setTheme] = useState({
-    mode: 'dark',
+    mode: localStorage.getItem('battleships-theme') || 'dark',
   });
+
+  useEffect(() => {
+    localStorage.setItem('battleships-theme', theme.mode);
+  }, [theme]);
 
   const toggle = () => {
     const mode = theme.mode === 'dark' ? 'light' : 'dark';
