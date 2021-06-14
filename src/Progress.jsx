@@ -11,9 +11,29 @@ const backgroundColor = theme('mode', {
   dark: '#212529',
 });
 
+const progressBarColor = theme('mode', {
+  light: '#212529',
+  dark: '#fff',
+});
+
 const StyledProgress = styled.progress`
   border-image-source: ${borderImageSource};
   background-color: ${backgroundColor};
+
+  ::-webkit-progress-bar {
+    background-color: ${backgroundColor} !important;
+    width: 100%;
+  }
+
+  ::-webkit-progress-value {
+    background-color: ${progressBarColor} !important;
+  }
+
+  ::-moz-progress-bar {
+    background-color: ${progressBarColor} !important;
+  }
+
+  color: ${progressBarColor};
 `;
 
 const Progress = ({ type, value, max }) => (
