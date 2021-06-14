@@ -32,6 +32,7 @@ const Button = ({
   pixelArtHeight,
   pixelArtOverrideTheme,
   noDecoration,
+  className,
 }) => {
   const buttonClass = type === 'is-normal' ? 'nes-btn' : `nes-btn ${type}`;
 
@@ -39,7 +40,7 @@ const Button = ({
     <StyledButton
       onClick={onClick}
       type="button"
-      className={type && buttonClass}
+      className={type ? `${className} ${buttonClass}` : className}
       noDecoration={noDecoration}
     >
       {pixelArt && (
