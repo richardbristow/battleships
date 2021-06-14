@@ -6,8 +6,17 @@ import { useTheme } from './ThemeContext';
 
 const StyledHeader = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
+
+  div {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h1 {
+    display: inline-block;
+  }
 
   img {
     margin-left: 5px;
@@ -19,8 +28,10 @@ const Header = ({ theme }) => {
 
   return (
     <StyledHeader>
-      <h1>BATTLESHIPS</h1>
-      <PixelArt name="crossHair" alt="header crosshair" height="2.5em" />
+      <div>
+        <h1>BATTLESHIPS</h1>
+        <PixelArt name="crossHair" alt="header crosshair" height="2.5em" />
+      </div>
       <Button
         onClick={() => themeToggle.toggle()}
         pixelArt={theme.mode === 'dark' ? 'sun' : 'moon'}
