@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
 import theme from 'styled-theming';
 
@@ -28,10 +28,17 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const LinkCustom = ({ children, to, noDecoration }) => (
-  <StyledLink $noDecoration={noDecoration} to={to}>
-    {children}
-  </StyledLink>
-);
+const LinkCustom = ({ children, to, noDecoration }) => {
+  const location = useLocation();
+
+  return (
+    <StyledLink
+      $noDecoration={noDecoration}
+      to={{ pathname: to, state: { prevPath: location.pathname } }}
+    >
+      {children}
+    </StyledLink>
+  );
+};
 
 export default LinkCustom;
