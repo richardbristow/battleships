@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 import LinkCustom from './LinkCustom';
 import Container from './Container';
