@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import { useRouteMatch } from 'react-router-dom';
+import { useRouteMatch, useLocation } from 'react-router-dom';
 
 import './keyframes.css';
 import LinkCustom from './LinkCustom';
@@ -33,6 +33,8 @@ const NavLinkCustom = ({ label, to }) => {
     exact: true,
   });
 
+  const location = useLocation();
+
   return (
     <StyledNavLinkCustom
       onClick={() => {
@@ -42,7 +44,7 @@ const NavLinkCustom = ({ label, to }) => {
       <div>
         {match && (
           <PixelArt
-            className="blink"
+            className={location.state && location.state.prevPath && 'blink'}
             name="caretRight"
             alt="selected navigation link"
             height="25px"
