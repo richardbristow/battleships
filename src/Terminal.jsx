@@ -7,7 +7,7 @@ const StyledTerminal = styled.div`
     content: ' ';
     display: block;
     position: absolute;
-    top: 12px;
+    top: 14px;
     left: 4px;
     bottom: 4px;
     right: 4px;

@@ -17,6 +17,7 @@ const StyledContainer = styled.div`
     width: auto;
     padding: 0px 4px;
     margin: 0px;
+    border: 4px solid ${borderColor};
   }
 `;
 
