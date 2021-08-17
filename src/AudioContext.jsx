@@ -6,7 +6,7 @@ const useAudio = () => useContext(AudioToggleContext);
 
 const AudioContext = ({ children }) => {
   const [isMuted, setIsMuted] = useState(
-    localStorage.getItem('battleships-isMuted') || false,
+    JSON.parse(localStorage.getItem('battleships-isMuted')) || false,
   );
 
   useEffect(() => {
