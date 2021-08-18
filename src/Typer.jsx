@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 
 const TyperText = ({
   setChildrenIndex,
@@ -11,27 +11,39 @@ const TyperText = ({
   const {
     props: { children: childToType },
   } = children;
+  const charDelayTimerRef = useRef(null);
+  const blockDelayTimerRef = useRef(null);
 
-  useEffect(() => {
+  const blockDelayTimer = useCallback(() => {
+    blockDelayTimerRef.current = setTimeout(() => {
+      setChildrenIndex((prevChildrenIndex) => prevChildrenIndex + 1);
+    }, textBlockDelay);
+  }, [setChildrenIndex, textBlockDelay]);
+
+  const stringTyper = useCallback(() => {
     if (currentCharIndex < childToType.length) {
-      const charDelayTimer = setTimeout(() => {
+      charDelayTimerRef.current = setTimeout(() => {
         setText((prevText) => prevText + childToType[currentCharIndex]);
         setCurrentCharIndex(currentCharIndex + 1);
       }, characterDelay);
-      return () => clearTimeout(charDelayTimer);
     } else {
-      const blockDelayTimer = setTimeout(() => {
-        setChildrenIndex((prevChildrenIndex) => prevChildrenIndex + 1);
-      }, textBlockDelay);
-      return () => clearTimeout(blockDelayTimer);
+      blockDelayTimer();
     }
-  }, [
-    characterDelay,
-    childToType,
-    currentCharIndex,
-    setChildrenIndex,
-    textBlockDelay,
-  ]);
+  }, [blockDelayTimer, characterDelay, childToType, currentCharIndex]);
+
+  useEffect(() => {
+    if (typeof childToType === 'string') {
+      stringTyper();
+    } else if (React.isValidElement(childToType)) {
+      setText(childToType);
+      blockDelayTimer();
+    }
+
+    return () => {
+      clearTimeout(charDelayTimerRef.current);
+      clearTimeout(blockDelayTimerRef.current);
+    };
+  }, [blockDelayTimer, childToType, stringTyper]);
 
   return React.cloneElement(children, {
     children: text,
