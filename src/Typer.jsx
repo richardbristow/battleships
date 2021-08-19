@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 
-const TyperText = ({
+const TextTyper = ({
   setChildrenIndex,
   characterDelay,
   textBlockDelay,
@@ -54,16 +54,16 @@ const Typer = ({ characterDelay, textBlockDelay, children }) => {
   const [childrenIndex, setChildrenIndex] = useState(0);
 
   const clonedArray = React.Children.map(children, (child) => (
-    <TyperText
+    <TextTyper
       setChildrenIndex={setChildrenIndex}
       characterDelay={characterDelay}
       textBlockDelay={textBlockDelay}
     >
       {child}
-    </TyperText>
+    </TextTyper>
   ));
 
   return clonedArray.slice(0, childrenIndex + 1);
 };
 
-export { Typer, TyperText };
+export { Typer, TextTyper };
