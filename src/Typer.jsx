@@ -45,6 +45,10 @@ const Typer = ({ characterDelay, textBlockDelay, children }) => {
   const [childrenIndex, setChildrenIndex] = useState(0);
   const blockDelayTimerRef = useRef(null);
 
+  useEffect(() => {
+    return () => clearTimeout(blockDelayTimerRef.current);
+  });
+
   const blockDelayTimer = useCallback(() => {
     blockDelayTimerRef.current = setTimeout(() => {
       setChildrenIndex((prevChildrenIndex) => prevChildrenIndex + 1);
@@ -59,9 +63,7 @@ const Typer = ({ characterDelay, textBlockDelay, children }) => {
     if (typeof childToType === 'string') {
       return (
         <TextTyper
-          setChildrenIndex={setChildrenIndex}
           characterDelay={characterDelay}
-          textBlockDelay={textBlockDelay}
           blockDelayTimer={blockDelayTimer}
         >
           {child}
