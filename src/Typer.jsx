@@ -41,6 +41,61 @@ const JsxTyper = ({ children, blockDelayTimer }) => {
   return children;
 };
 
+const ArrayTyper = ({ children, characterDelay, blockDelayTimer }) => {
+  const [text, setText] = useState([]);
+  const [childrenIndex, setChildrenIndex] = useState(0);
+  const [currentCharIndex, setCurrentCharIndex] = useState(0);
+  const charDelayTimerRef = useRef(null);
+  const {
+    props: { children: arrayToType },
+  } = children;
+
+  const stringCharTyper = useCallback(
+    (stringToType) => {
+      if (childrenIndex < arrayToType.length) {
+        if (typeof stringToType === 'string') {
+          if (currentCharIndex < stringToType.length) {
+            charDelayTimerRef.current = setTimeout(() => {
+              setText((prevText) => [
+                ...prevText,
+                stringToType[currentCharIndex],
+              ]);
+              setCurrentCharIndex(currentCharIndex + 1);
+            }, characterDelay);
+          } else {
+            setCurrentCharIndex(0);
+            setChildrenIndex((prevIndex) => prevIndex + 1);
+          }
+        } else if (React.isValidElement(stringToType)) {
+          setText((prevText) => [...prevText, stringToType]);
+          setChildrenIndex((prevIndex) => prevIndex + 1);
+        } else {
+          setChildrenIndex((prevIndex) => prevIndex + 1);
+        }
+      } else {
+        blockDelayTimer();
+      }
+    },
+    [
+      arrayToType.length,
+      blockDelayTimer,
+      characterDelay,
+      childrenIndex,
+      currentCharIndex,
+    ],
+  );
+
+  useEffect(() => {
+    stringCharTyper(arrayToType[childrenIndex]);
+
+    return () => clearTimeout(charDelayTimerRef.current);
+  }, [arrayToType, childrenIndex, stringCharTyper]);
+
+  return React.cloneElement(children, {
+    children: text,
+  });
+};
+
 const Typer = ({ characterDelay, textBlockDelay, children }) => {
   const [childrenIndex, setChildrenIndex] = useState(0);
   const blockDelayTimerRef = useRef(null);
@@ -72,7 +127,14 @@ const Typer = ({ characterDelay, textBlockDelay, children }) => {
     } else if (React.isValidElement(childToType)) {
       return <JsxTyper blockDelayTimer={blockDelayTimer}>{child}</JsxTyper>;
     } else if (Array.isArray(childToType)) {
-      console.log('array');
+      return (
+        <ArrayTyper
+          characterDelay={characterDelay}
+          blockDelayTimer={blockDelayTimer}
+        >
+          {child}
+        </ArrayTyper>
+      );
     } else {
       return null;
     }
