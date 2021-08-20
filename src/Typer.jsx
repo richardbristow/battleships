@@ -8,7 +8,7 @@ const TextTyper = ({ characterDelay, children, blockDelayTimer }) => {
   } = children;
   const charDelayTimerRef = useRef(null);
 
-  const stringTyper = useCallback(
+  const stringCharTyper = useCallback(
     (stringToType) => {
       if (currentCharIndex < stringToType.length) {
         charDelayTimerRef.current = setTimeout(() => {
@@ -23,14 +23,22 @@ const TextTyper = ({ characterDelay, children, blockDelayTimer }) => {
   );
 
   useEffect(() => {
-    stringTyper(childToType);
+    stringCharTyper(childToType);
 
     return () => clearTimeout(charDelayTimerRef.current);
-  }, [childToType, stringTyper]);
+  }, [childToType, stringCharTyper]);
 
   return React.cloneElement(children, {
     children: text,
   });
+};
+
+const JsxTyper = ({ children, blockDelayTimer }) => {
+  useEffect(() => {
+    blockDelayTimer();
+  }, [blockDelayTimer]);
+
+  return children;
 };
 
 const Typer = ({ characterDelay, textBlockDelay, children }) => {
@@ -41,7 +49,7 @@ const Typer = ({ characterDelay, textBlockDelay, children }) => {
     blockDelayTimerRef.current = setTimeout(() => {
       setChildrenIndex((prevChildrenIndex) => prevChildrenIndex + 1);
     }, textBlockDelay);
-  }, [setChildrenIndex, textBlockDelay]);
+  }, [textBlockDelay]);
 
   const clonedArray = React.Children.map(children, (child) => {
     const {
@@ -60,7 +68,7 @@ const Typer = ({ characterDelay, textBlockDelay, children }) => {
         </TextTyper>
       );
     } else if (React.isValidElement(childToType)) {
-      return child;
+      return <JsxTyper blockDelayTimer={blockDelayTimer}>{child}</JsxTyper>;
     } else if (Array.isArray(childToType)) {
       console.log('array');
     } else {
