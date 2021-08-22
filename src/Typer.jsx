@@ -8,7 +8,7 @@ const TextTyper = ({ characterDelay, children, blockDelayTimer }) => {
   } = children;
   const charDelayTimerRef = useRef(null);
 
-  const stringCharTyper = useCallback(
+  const charTyper = useCallback(
     (stringToType) => {
       if (currentCharIndex < stringToType.length) {
         charDelayTimerRef.current = setTimeout(() => {
@@ -23,10 +23,10 @@ const TextTyper = ({ characterDelay, children, blockDelayTimer }) => {
   );
 
   useEffect(() => {
-    stringCharTyper(childToType);
+    charTyper(childToType);
 
     return () => clearTimeout(charDelayTimerRef.current);
-  }, [childToType, stringCharTyper]);
+  }, [childToType, charTyper]);
 
   return React.cloneElement(children, {
     children: text,
@@ -50,7 +50,7 @@ const ArrayTyper = ({ children, characterDelay, blockDelayTimer }) => {
     props: { children: arrayToType },
   } = children;
 
-  const stringCharTyper = useCallback(
+  const indexedCharTyper = useCallback(
     (stringToType) => {
       if (childrenIndex < arrayToType.length) {
         if (typeof stringToType === 'string') {
@@ -86,10 +86,10 @@ const ArrayTyper = ({ children, characterDelay, blockDelayTimer }) => {
   );
 
   useEffect(() => {
-    stringCharTyper(arrayToType[childrenIndex]);
+    indexedCharTyper(arrayToType[childrenIndex]);
 
     return () => clearTimeout(charDelayTimerRef.current);
-  }, [arrayToType, childrenIndex, stringCharTyper]);
+  }, [arrayToType, childrenIndex, indexedCharTyper]);
 
   return React.cloneElement(children, {
     children: text,
@@ -110,7 +110,7 @@ const Typer = ({ characterDelay, textBlockDelay, children }) => {
     }, textBlockDelay);
   }, [textBlockDelay]);
 
-  const clonedArray = React.Children.map(children, (child) => {
+  const childrenArray = React.Children.map(children, (child) => {
     const {
       props: { children: childToType },
     } = child;
@@ -140,7 +140,7 @@ const Typer = ({ characterDelay, textBlockDelay, children }) => {
     }
   });
 
-  return clonedArray.slice(0, childrenIndex + 1);
+  return childrenArray.slice(0, childrenIndex + 1);
 };
 
-export { Typer, TextTyper };
+export default Typer;
