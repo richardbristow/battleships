@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Normalize } from 'styled-normalize';
 
-import GlobalStyle from './GlobalStyle';
+import GlobalStyle from '../GlobalStyle';
 
 const ThemeToggleContext = createContext();
 

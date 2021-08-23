@@ -1,9 +1,9 @@
 import styled, { withTheme } from 'styled-components/macro';
 
-import PixelArt from './PixelArt';
-import Button from './Button';
-import { useTheme } from './ThemeContext';
-import { useAudio } from './AudioContext';
+import PixelArt from './components/PixelArt';
+import Button from './components/Button';
+import { useTheme } from './context/ThemeContext';
+import { useAudio } from './context/AudioContext';
 
 const StyledHeader = styled.div`
   display: flex;

@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 
-import Ship from './Ship';
-import Container from './Container';
+import Ship from './components/Ship';
+import Container from './components/Container';
 
 const shipSize = [2, 3, 3, 4, 5];
 

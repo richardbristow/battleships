@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 import { useResizeDetector } from 'react-resize-detector';
 
-import Grid from './Grid';
+import Grid from './components/Grid';
 import CommandPanel from './CommandPanel';
 
 const StyledGameWrapper = styled.div`

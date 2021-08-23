@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components/macro';
 import { useDrag } from 'react-dnd';
 import theme from 'styled-theming';
 
-import draggerBlackCursor from './assets/dragger-black-cursor.png';
+import draggerBlackCursor from '../assets/dragger-black-cursor.png';
 
 const borderColor = theme('mode', {
   light: '#212529',

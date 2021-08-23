@@ -1,11 +1,11 @@
 import styled from 'styled-components/macro';
 import { useRouteMatch, useLocation } from 'react-router-dom';
 
-import './keyframes.css';
+import '../keyframes.css';
 import LinkCustom from './LinkCustom';
 import PixelArt from './PixelArt';
-import menuNavigate from './audio/menu-navigate.wav';
-import { useAudio } from './AudioContext';
+import menuNavigate from '../audio/menu-navigate.wav';
+import { useAudio } from '../context/AudioContext';
 
 const StyledNavLinkCustom = styled.li`
   display: flex;

@@ -6,8 +6,8 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import App from './App';
-import { ThemeContext } from './ThemeContext';
-import { AudioContext } from './AudioContext';
+import { ThemeContext } from './context/ThemeContext';
+import { AudioContext } from './context/AudioContext';
 
 const StyledWrapper = styled.div`
   max-width: 1200px;

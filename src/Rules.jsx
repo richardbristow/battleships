@@ -1,10 +1,10 @@
 import styled from 'styled-components/macro';
 
-import Container from './Container';
-import Text from './Text';
-import Terminal from './Terminal';
+import Container from './components/Container';
+import Text from './components/Text';
+import Terminal from './components/Terminal';
 import Typer from './Typer';
-import ScrollbarCustom from './ScrollbarCustom';
+import ScrollbarCustom from './components/ScrollbarCustom';
 
 const StyledRules = styled.div`
   height: 60vh;

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components/macro';
 
-import './keyframes.css';
+import '../keyframes.css';
 
 const StyledText = styled.div`
   display: flex;

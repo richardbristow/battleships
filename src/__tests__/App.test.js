@@ -4,9 +4,9 @@ import { createMemoryHistory } from 'history';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
 
-import App from './App';
-import { ThemeContext } from './ThemeContext';
-import { AudioContext } from './AudioContext';
+import App from '../App';
+import { ThemeContext } from '../context/ThemeContext';
+import { AudioContext } from '../context/AudioContext';
 
 const { ResizeObserver } = window;
 

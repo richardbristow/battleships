@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
 
-import './keyframes.css';
+import '../keyframes.css';
 
 const StyledTerminal = styled.div`
   &:before {

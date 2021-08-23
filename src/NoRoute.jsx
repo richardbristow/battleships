@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 import { useHistory } from 'react-router-dom';
 
-import LinkCustom from './LinkCustom';
-import Container from './Container';
-import PixelArt from './PixelArt';
-import Progress from './Progress';
-import Text from './Text';
+import LinkCustom from './components/LinkCustom';
+import Container from './components/Container';
+import PixelArt from './components/PixelArt';
+import Progress from './components/Progress';
+import Text from './components/Text';
 
 const StyledNoRoute = styled(Container)`
   progress {

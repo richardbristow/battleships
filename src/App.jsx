@@ -2,7 +2,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import Header from './Header';
 import Rules from './Rules';
-import NavBar from './NavBar';
+import NavBar from './components/NavBar';
 import NoRoute from './NoRoute';
 import Game from './Game';
 
