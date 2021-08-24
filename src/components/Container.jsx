@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import PropTypes from 'prop-types';
 import theme from 'styled-theming';
 
 const borderColor = theme('mode', {
@@ -29,5 +30,21 @@ const Container = ({ children, className, title }) => (
     </fieldset>
   </StyledContainer>
 );
+
+Container.defaultProps = {
+  className: null,
+  title: null,
+  children: null,
+};
+
+Container.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
+    PropTypes.array,
+  ]),
+  className: PropTypes.string,
+  title: PropTypes.string,
+};
 
 export default Container;

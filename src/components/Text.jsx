@@ -56,6 +56,7 @@ Text.defaultProps = {
   children: null,
   textElementTag: 'p',
   terminalText: false,
+  className: null,
 };
 
 Text.propTypes = {
@@ -67,6 +68,7 @@ Text.propTypes = {
   ]),
   textElementTag: PropTypes.string,
   terminalText: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 export default Text;

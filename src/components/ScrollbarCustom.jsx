@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import { Scrollbar } from 'react-scrollbars-custom';
+import PropTypes from 'prop-types';
 
 const StyledScrollbar = styled(Scrollbar)`
   .thumbY {
@@ -23,5 +24,17 @@ const ScrollbarCustom = ({ children }) => (
     {children}
   </StyledScrollbar>
 );
+
+ScrollbarCustom.defaultProps = {
+  children: null,
+};
+
+ScrollbarCustom.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
+    PropTypes.array,
+  ]),
+};
 
 export default ScrollbarCustom;

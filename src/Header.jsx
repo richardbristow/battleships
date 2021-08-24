@@ -1,4 +1,5 @@
 import styled, { withTheme } from 'styled-components/macro';
+import PropTypes from 'prop-types';
 
 import PixelArt from './components/PixelArt';
 import Button from './components/Button';
@@ -55,6 +56,12 @@ const Header = ({ theme }) => {
       />
     </StyledHeader>
   );
+};
+
+Header.propTypes = {
+  theme: PropTypes.shape({
+    mode: PropTypes.string,
+  }).isRequired,
 };
 
 export default withTheme(Header);

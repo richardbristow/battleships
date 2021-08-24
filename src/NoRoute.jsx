@@ -21,7 +21,6 @@ const NoRoute = () => {
   useEffect(() => {
     if (timeLeft === 0) {
       history.push('/');
-      return;
     }
     const timerID = setInterval(() => setTimeLeft(timeLeft - 1), 1000);
 
@@ -38,12 +37,12 @@ const NoRoute = () => {
         />
       </Text>
       <Text marker="&gt;">
-        Whoops! You've stumbled upon a page that doesn't exist.
+        Whoops! You&apos;ve stumbled upon a page that doesn&apos;t exist.
       </Text>
       <Text marker="&gt;">
         <p>
-          You'll be redirected back <LinkCustom to="/">home</LinkCustom> in...{' '}
-          {timeLeft} seconds.
+          You&apos;ll be redirected back <LinkCustom to="/">home</LinkCustom>{' '}
+          in... {timeLeft} seconds.
         </p>
       </Text>
       <Progress type="is-warning" value={(10 - timeLeft) * 10} max="100" />

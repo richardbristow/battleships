@@ -62,6 +62,8 @@ Button.defaultProps = {
   pixelArt: null,
   pixelArtHeight: '50px',
   pixelArtOverrideTheme: null,
+  noDecoration: false,
+  className: null,
 };
 
 Button.propTypes = {
@@ -71,6 +73,8 @@ Button.propTypes = {
   pixelArt: PropTypes.string,
   pixelArtHeight: PropTypes.string,
   pixelArtOverrideTheme: PropTypes.oneOf(['light', 'dark']),
+  noDecoration: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 export default Button;

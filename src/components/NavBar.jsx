@@ -13,15 +13,13 @@ const StyledNavbar = styled.nav`
   }
 `;
 
-const NavBar = () => {
-  return (
-    <StyledNavbar>
-      <ul>
-        <NavLinkCustom label="Player vs. Computer" to="/" />
-        <NavLinkCustom label="Rules" to="/rules" />
-      </ul>
-    </StyledNavbar>
-  );
-};
+const NavBar = () => (
+  <StyledNavbar>
+    <ul>
+      <NavLinkCustom label="Player vs. Computer" to="/" />
+      <NavLinkCustom label="Rules" to="/rules" />
+    </ul>
+  </StyledNavbar>
+);
 
 export default NavBar;

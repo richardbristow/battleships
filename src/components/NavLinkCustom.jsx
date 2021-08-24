@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import { useRouteMatch, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import '../keyframes.css';
 import LinkCustom from './LinkCustom';
@@ -37,9 +38,7 @@ const NavLinkCustom = ({ label, to }) => {
 
   return (
     <StyledNavLinkCustom
-      onClick={() => {
-        !match && !isMuted && new Audio(menuNavigate).play();
-      }}
+      onClick={() => !match && !isMuted && new Audio(menuNavigate).play()}
     >
       <div>
         {match && (
@@ -56,6 +55,11 @@ const NavLinkCustom = ({ label, to }) => {
       </LinkCustom>
     </StyledNavLinkCustom>
   );
+};
+
+NavLinkCustom.propTypes = {
+  label: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
 };
 
 export default NavLinkCustom;

@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import PropTypes from 'prop-types';
 
 import '../keyframes.css';
 
@@ -49,5 +50,19 @@ const Terminal = ({ children, scanline }) => (
     {children}
   </StyledTerminal>
 );
+
+Terminal.defaultProps = {
+  children: null,
+  scanline: false,
+};
+
+Terminal.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
+    PropTypes.array,
+  ]),
+  scanline: PropTypes.bool,
+};
 
 export default Terminal;

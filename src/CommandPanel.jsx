@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import PropTypes from 'prop-types';
 
 import Ship from './components/Ship';
 import Container from './components/Container';
@@ -37,6 +38,7 @@ const CommandPanel = ({ shipSquareDimensions }) => (
     <StyledShipPanel>
       {shipSize.map((size, index) => (
         <Ship
+          // eslint-disable-next-line react/no-array-index-key
           key={`ship-${size}-${index}`}
           size={size}
           shipSquareDimensions={shipSquareDimensions}
@@ -45,5 +47,12 @@ const CommandPanel = ({ shipSquareDimensions }) => (
     </StyledShipPanel>
   </StyledContainer>
 );
+
+CommandPanel.propTypes = {
+  shipSquareDimensions: PropTypes.shape({
+    width: PropTypes.number,
+    height: PropTypes.number,
+  }).isRequired,
+};
 
 export default CommandPanel;

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styled, { css } from 'styled-components/macro';
 import { useDrag } from 'react-dnd';
 import theme from 'styled-theming';
+import PropTypes from 'prop-types';
 
 import draggerBlackCursor from '../assets/dragger-black-cursor.png';
 
@@ -63,9 +64,9 @@ const StyledShipSquare = styled.div`
 
 const renderShipSquares = (size, isVertical) => {
   const shipSquares = [];
-  for (let index = 0; index < size; index++) {
+  for (let index = 0; index < size; index += 1) {
     shipSquares.push(
-      <StyledShipSquare isVertical={isVertical} key={`shipSquare-${index}`} />,
+      <StyledShipSquare isVertical={isVertical} key={`shipSquare-${index}`} />
     );
   }
   return shipSquares;
@@ -93,6 +94,14 @@ const Ship = ({ size, shipSquareDimensions }) => {
       {renderShipSquares(size, isVertical)}
     </StyledShip>
   );
+};
+
+Ship.propTypes = {
+  size: PropTypes.number.isRequired,
+  shipSquareDimensions: PropTypes.shape({
+    width: PropTypes.number,
+    height: PropTypes.number,
+  }).isRequired,
 };
 
 export default Ship;

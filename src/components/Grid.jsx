@@ -1,4 +1,5 @@
 import { forwardRef } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
 import GridSquare from './GridSquare';
@@ -22,10 +23,19 @@ const Grid = forwardRef(({ type }, ref) => (
   <StyledContainer title={type}>
     <StyledGridSquareWrapper ref={ref}>
       {[...Array(100).keys()].map((_, index) => (
+        // eslint-disable-next-line react/no-array-index-key
         <GridSquare key={`gridsquare-${index}`} />
       ))}
     </StyledGridSquareWrapper>
   </StyledContainer>
 ));
+
+Grid.defaultProps = {
+  type: null,
+};
+
+Grid.propTypes = {
+  type: PropTypes.string,
+};
 
 export default Grid;

@@ -51,14 +51,14 @@ const StyledPixelArt = styled.img`
 `;
 
 const PixelArt = ({ className, name, theme, height, alt, overrideTheme }) => {
-  const pixelArtTheme = overrideTheme ? overrideTheme : theme.mode;
+  const pixelArtTheme = overrideTheme || theme.mode;
 
   return (
     <StyledPixelArt
       className={className}
       $height={height}
       src={pixelArtAssets[name][pixelArtTheme]}
-      alt={alt ? alt : name}
+      alt={alt || name}
     />
   );
 };

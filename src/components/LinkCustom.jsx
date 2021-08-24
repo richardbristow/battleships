@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
 import theme from 'styled-theming';
+import PropTypes from 'prop-types';
 
 const linkColor = theme('mode', {
   light: '#212529',
@@ -39,6 +40,21 @@ const LinkCustom = ({ children, to, noDecoration }) => {
       {children}
     </StyledLink>
   );
+};
+
+LinkCustom.defaultProps = {
+  children: null,
+  noDecoration: false,
+};
+
+LinkCustom.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
+    PropTypes.array,
+  ]),
+  to: PropTypes.string.isRequired,
+  noDecoration: PropTypes.bool,
 };
 
 export default LinkCustom;

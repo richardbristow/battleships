@@ -19,7 +19,7 @@ const TextTyper = ({ characterDelay, children, blockDelayTimer }) => {
         blockDelayTimer();
       }
     },
-    [blockDelayTimer, characterDelay, currentCharIndex],
+    [blockDelayTimer, characterDelay, currentCharIndex]
   );
 
   useEffect(() => {
@@ -82,7 +82,7 @@ const ArrayTyper = ({ children, characterDelay, blockDelayTimer }) => {
       characterDelay,
       childrenIndex,
       currentCharIndex,
-    ],
+    ]
   );
 
   useEffect(() => {
@@ -100,9 +100,7 @@ const Typer = ({ characterDelay, textBlockDelay, children }) => {
   const [childrenIndex, setChildrenIndex] = useState(0);
   const blockDelayTimerRef = useRef(null);
 
-  useEffect(() => {
-    return () => clearTimeout(blockDelayTimerRef.current);
-  });
+  useEffect(() => () => clearTimeout(blockDelayTimerRef.current));
 
   const blockDelayTimer = useCallback(() => {
     blockDelayTimerRef.current = setTimeout(() => {
@@ -124,9 +122,13 @@ const Typer = ({ characterDelay, textBlockDelay, children }) => {
           {child}
         </TextTyper>
       );
-    } else if (React.isValidElement(childToType)) {
+    }
+
+    if (React.isValidElement(childToType)) {
       return <JsxTyper blockDelayTimer={blockDelayTimer}>{child}</JsxTyper>;
-    } else if (Array.isArray(childToType)) {
+    }
+
+    if (Array.isArray(childToType)) {
       return (
         <ArrayTyper
           characterDelay={characterDelay}
@@ -135,9 +137,9 @@ const Typer = ({ characterDelay, textBlockDelay, children }) => {
           {child}
         </ArrayTyper>
       );
-    } else {
-      return null;
     }
+
+    return null;
   });
 
   return childrenArray.slice(0, childrenIndex + 1);

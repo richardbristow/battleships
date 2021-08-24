@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const AudioToggleContext = createContext();
 
@@ -6,7 +7,7 @@ const useAudio = () => useContext(AudioToggleContext);
 
 const AudioContext = ({ children }) => {
   const [isMuted, setIsMuted] = useState(
-    JSON.parse(localStorage.getItem('battleships-isMuted')) || false,
+    JSON.parse(localStorage.getItem('battleships-isMuted')) || false
   );
 
   useEffect(() => {
@@ -18,10 +19,22 @@ const AudioContext = ({ children }) => {
   };
 
   return (
-    <AudioToggleContext.Provider value={{ toggle: toggle, isMuted: isMuted }}>
+    <AudioToggleContext.Provider value={{ toggle, isMuted }}>
       {children}
     </AudioToggleContext.Provider>
   );
+};
+
+AudioContext.defaultProps = {
+  children: null,
+};
+
+AudioContext.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
+    PropTypes.array,
+  ]),
 };
 
 export { useAudio, AudioContext };
