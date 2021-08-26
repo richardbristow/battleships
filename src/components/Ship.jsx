@@ -72,12 +72,12 @@ const renderShipSquares = (size, isVertical) => {
   return shipSquares;
 };
 
-const Ship = ({ size, shipSquareDimensions }) => {
+const Ship = ({ shipName, size, shipSquareDimensions }) => {
   const [isVertical, setIsVertical] = useState(true);
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'ship',
-    item: { size },
+    item: { shipName, size },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
@@ -98,6 +98,7 @@ const Ship = ({ size, shipSquareDimensions }) => {
 
 Ship.propTypes = {
   size: PropTypes.number.isRequired,
+  shipName: PropTypes.string.isRequired,
   shipSquareDimensions: PropTypes.shape({
     width: PropTypes.number,
     height: PropTypes.number,

@@ -4,7 +4,28 @@ import PropTypes from 'prop-types';
 import Ship from './components/Ship';
 import Container from './components/Container';
 
-const shipSize = [2, 3, 3, 4, 5];
+const ships = [
+  {
+    shipName: 'ship2',
+    size: 2,
+  },
+  {
+    shipName: 'ship31',
+    size: 3,
+  },
+  {
+    shipName: 'ship32',
+    size: 3,
+  },
+  {
+    shipName: 'ship4',
+    size: 4,
+  },
+  {
+    shipName: 'ship5',
+    size: 5,
+  },
+];
 
 const StyledContainer = styled(Container)`
   flex: 22%;
@@ -36,11 +57,11 @@ const CommandPanel = ({ shipSquareDimensions }) => (
       <p>Double click/tap on the ships to rotate before placement.</p>
     </StyledInfoPanel>
     <StyledShipPanel>
-      {shipSize.map((size, index) => (
+      {ships.map(({ shipName, size }) => (
         <Ship
-          // eslint-disable-next-line react/no-array-index-key
-          key={`ship-${size}-${index}`}
+          key={shipName}
           size={size}
+          shipName={shipName}
           shipSquareDimensions={shipSquareDimensions}
         />
       ))}
