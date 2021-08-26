@@ -62,26 +62,19 @@ const StyledShipSquare = styled.div`
         `}
 `;
 
-const renderShipSquares = (size, isVertical) => {
-  const shipSquares = [];
-  for (let index = 0; index < size; index += 1) {
-    shipSquares.push(
-      <StyledShipSquare isVertical={isVertical} key={`shipSquare-${index}`} />
-    );
-  }
-  return shipSquares;
-};
-
 const Ship = ({ shipName, size, shipSquareDimensions }) => {
   const [isVertical, setIsVertical] = useState(true);
 
-  const [{ isDragging }, drag] = useDrag(() => ({
-    type: 'ship',
-    item: { shipName, size },
-    collect: (monitor) => ({
-      isDragging: !!monitor.isDragging(),
+  const [{ isDragging }, drag] = useDrag(
+    () => ({
+      type: 'ship',
+      item: { shipName, size, isVertical },
+      collect: (monitor) => ({
+        isDragging: !!monitor.isDragging(),
+      }),
     }),
-  }));
+    [isVertical]
+  );
 
   return (
     <StyledShip
@@ -91,7 +84,9 @@ const Ship = ({ shipName, size, shipSquareDimensions }) => {
       ref={drag}
       shipSquareDimensions={shipSquareDimensions}
     >
-      {renderShipSquares(size, isVertical)}
+      {[...Array(size).keys()].map((id) => (
+        <StyledShipSquare isVertical={isVertical} key={`shipSquare-${id}`} />
+      ))}
     </StyledShip>
   );
 };

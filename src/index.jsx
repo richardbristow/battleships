@@ -29,5 +29,5 @@ ReactDOM.render(
       </AudioContext>
     </ThemeContext>
   </React.StrictMode>,
-  document.getElementById('root'),
+  document.getElementById('root')
 );
