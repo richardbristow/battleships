@@ -11,7 +11,7 @@ const borderColor = theme('mode', {
   dark: '#fff',
 });
 
-const StyledShip = styled.div`
+const StyledShipDrag = styled.div`
   display: flex;
   flex-direction: ${({ isVertical }) => (isVertical ? 'column' : 'row')};
   cursor: url(${draggerBlackCursor}), move;
@@ -65,20 +65,22 @@ const Ship = ({ shipName, size, shipSquareDimensions }) => {
   );
 
   return (
-    <StyledShip
-      onDoubleClick={() => setIsVertical(!isVertical)}
-      isVertical={isVertical}
-      isDragging={isDragging}
-      ref={drag}
-    >
-      {[...Array(size).keys()].map((id) => (
-        <StyledShipSquare
-          shipSquareDimensions={shipSquareDimensions}
-          isVertical={isVertical}
-          key={`shipSquare-${id}`}
-        />
-      ))}
-    </StyledShip>
+    <div>
+      <StyledShipDrag
+        onDoubleClick={() => setIsVertical(!isVertical)}
+        isVertical={isVertical}
+        isDragging={isDragging}
+        ref={drag}
+      >
+        {[...Array(size).keys()].map((id) => (
+          <StyledShipSquare
+            shipSquareDimensions={shipSquareDimensions}
+            isVertical={isVertical}
+            key={`shipSquare-${id}`}
+          />
+        ))}
+      </StyledShipDrag>
+    </div>
   );
 };
 
