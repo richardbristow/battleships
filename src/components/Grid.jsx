@@ -17,6 +17,7 @@ const StyledGridSquareWrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  border: 2px solid #212529;
 `;
 
 const Grid = forwardRef(({ type }, ref) => (
