@@ -4,8 +4,8 @@ const StyledGridSquare = styled.div`
   background-color: lightskyblue;
   flex: 10%;
   padding-bottom: calc(10% - 2px);
-  border-bottom: 2px solid black;
-  border-right: 2px solid black;
+  border-bottom: 2px solid #212529;
+  border-right: 2px solid #212529;
   &:nth-child(10n) {
     border-right: 0px;
   }
