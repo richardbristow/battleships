@@ -19,13 +19,18 @@ const StyledGridWrapper = styled.div`
 
 const Game = () => {
   const { width, height, ref } = useResizeDetector();
+  const shipSquareDimensions = { width, height };
 
   return (
     <StyledGameWrapper>
-      <CommandPanel shipSquareDimensions={{ width, height }} />
+      <CommandPanel shipSquareDimensions={shipSquareDimensions} />
       <StyledGridWrapper>
-        <Grid type="Player" ref={ref} />
-        <Grid type="Opponent" />
+        <Grid
+          shipSquareDimensions={shipSquareDimensions}
+          type="Player"
+          ref={ref}
+        />
+        <Grid shipSquareDimensions={shipSquareDimensions} type="Opponent" />
       </StyledGridWrapper>
     </StyledGameWrapper>
   );

@@ -2,6 +2,7 @@ import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 
+import GridAxis from './GridAxis';
 import GridSquare from './GridSquare';
 import Container from './Container';
 
@@ -18,16 +19,18 @@ const StyledGridSquareWrapper = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   border: 2px solid #212529;
+  width: 100%;
 `;
 
-const Grid = forwardRef(({ type }, ref) => (
+const Grid = forwardRef(({ type, shipSquareDimensions }, ref) => (
   <StyledContainer title={type}>
-    <StyledGridSquareWrapper ref={ref}>
-      {[...Array(100).keys()].map((_, index) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <GridSquare key={`gridsquare-${index}`} />
-      ))}
-    </StyledGridSquareWrapper>
+    <GridAxis shipSquareDimensions={shipSquareDimensions}>
+      <StyledGridSquareWrapper ref={ref}>
+        {[...Array(100).keys()].map((keyNum) => (
+          <GridSquare key={`gridsquare-${keyNum}`} />
+        ))}
+      </StyledGridSquareWrapper>
+    </GridAxis>
   </StyledContainer>
 ));
 
@@ -37,6 +40,10 @@ Grid.defaultProps = {
 
 Grid.propTypes = {
   type: PropTypes.string,
+  shipSquareDimensions: PropTypes.shape({
+    width: PropTypes.number,
+    height: PropTypes.number,
+  }).isRequired,
 };
 
 export default Grid;
