@@ -50,7 +50,7 @@ const StyledAxisSquare = styled.div`
           border-right: 2px solid #212529;
           border-top: 2px solid #212529;
           &:first-child {
-            border-top: 2px solid ${topAxisFirstChildBorderColor};
+            border-top: 2px transparent;
             background-color: ${topAxisFirstChildColor};
           }
           &:last-child {
