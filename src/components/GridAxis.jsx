@@ -50,42 +50,35 @@ const StyledAxisSquare = styled.div`
   font-size: 0.9vw;
 `;
 
-const GridAxis = ({ shipSquareDimensions, children }) => {
-  const width = shipSquareDimensions && shipSquareDimensions.width / 10;
-  const height = shipSquareDimensions && shipSquareDimensions.height / 10;
-
-  return (
-    <>
-      <StyledAxis orientation="top">
-        {['', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'].map(
-          (letter) => (
-            <StyledAxisSquare
-              orientation="top"
-              height={height}
-              key={`top-${letter}`}
-            >
-              {letter}
-            </StyledAxisSquare>
-          )
-        )}
+const GridAxis = ({ shipSquareDimensions, children }) => (
+  <>
+    <StyledAxis orientation="top">
+      {['', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'].map((letter) => (
+        <StyledAxisSquare
+          orientation="top"
+          height={shipSquareDimensions.height / 10 || 0}
+          key={`top-${letter}`}
+        >
+          {letter}
+        </StyledAxisSquare>
+      ))}
+    </StyledAxis>
+    <LeftAxisAndGridWrapper>
+      <StyledAxis orientation="left">
+        {['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'].map((num) => (
+          <StyledAxisSquare
+            orientation="left"
+            width={shipSquareDimensions.width / 10 || 0}
+            key={`top-${num}`}
+          >
+            {num}
+          </StyledAxisSquare>
+        ))}
       </StyledAxis>
-      <LeftAxisAndGridWrapper>
-        <StyledAxis orientation="left">
-          {['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'].map((num) => (
-            <StyledAxisSquare
-              orientation="left"
-              width={width}
-              key={`top-${num}`}
-            >
-              {num}
-            </StyledAxisSquare>
-          ))}
-        </StyledAxis>
-        {children}
-      </LeftAxisAndGridWrapper>
-    </>
-  );
-};
+      {children}
+    </LeftAxisAndGridWrapper>
+  </>
+);
 
 GridAxis.defaultProps = {
   children: null,
