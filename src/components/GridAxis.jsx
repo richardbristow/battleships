@@ -1,5 +1,16 @@
 import styled, { css } from 'styled-components/macro';
 import PropTypes from 'prop-types';
+import theme from 'styled-theming';
+
+const topAxisFirstChildColor = theme('mode', {
+  light: '#fff',
+  dark: '#212529',
+});
+
+const topAxisFirstChildBorderColor = theme('mode', {
+  light: '#fff',
+  dark: '#212529',
+});
 
 const LeftAxisAndGridWrapper = styled.div`
   display: flex;
@@ -12,26 +23,36 @@ const StyledAxis = styled.div`
   ${({ orientation }) =>
     orientation === 'top'
       ? css`
-          background-color: red;
+          background-color: #e81539;
           flex-direction: row;
-          border-right: 2px solid green;
-          border-left: 2px solid green;
+          border-right: 2px solid #212529;
+          border-left: 2px solid ${topAxisFirstChildBorderColor};
         `
       : css`
-          background-color: blue;
+          background-color: #0b24fb;
           flex-direction: column;
-          border-bottom: 2px solid yellow;
-          border-top: 2px solid yellow;
+          border-bottom: 2px solid #212529;
+          border-top: 2px solid #212529;
         `};
 `;
 
 const StyledAxisSquare = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9vw;
+  color: #fff;
   ${({ orientation }) =>
     orientation === 'top'
       ? css`
           height: ${({ height }) => `${height}px`};
           width: calc(100% / 11);
-          border-right: 2px solid black;
+          border-right: 2px solid #212529;
+          border-top: 2px solid #212529;
+          &:first-child {
+            border-top: 2px solid ${topAxisFirstChildBorderColor};
+            background-color: ${topAxisFirstChildColor};
+          }
           &:last-child {
             border-right: 0px;
           }
@@ -39,15 +60,12 @@ const StyledAxisSquare = styled.div`
       : css`
           height: calc(100% / 10);
           width: ${({ width }) => `${width}px`};
-          border-bottom: 2px solid white;
+          border-bottom: 2px solid #212529;
+          border-left: 2px solid #212529;
           &:last-child {
             border-bottom: 0px;
           }
         `};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.9vw;
 `;
 
 const GridAxis = ({ shipSquareDimensions, children }) => (
