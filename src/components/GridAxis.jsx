@@ -30,7 +30,7 @@ const StyledAxisSquare = styled.div`
     orientation === 'top'
       ? css`
           height: ${({ height }) => `${height}px`};
-          width: calc(100% / 10);
+          width: calc(100% / 11);
           border-right: 2px solid black;
           &:last-child {
             border-right: 0px;
