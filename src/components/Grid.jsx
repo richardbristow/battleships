@@ -18,7 +18,8 @@ const StyledGridSquareWrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  border: 2px solid #212529;
+  border-right: 2px solid transparent;
+  border-left: 2px solid #212529;
   width: 100%;
 `;
 

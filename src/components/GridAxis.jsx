@@ -1,16 +1,5 @@
 import styled, { css } from 'styled-components/macro';
 import PropTypes from 'prop-types';
-import theme from 'styled-theming';
-
-const topAxisFirstChildColor = theme('mode', {
-  light: '#fff',
-  dark: '#212529',
-});
-
-const topAxisFirstChildBorderColor = theme('mode', {
-  light: '#fff',
-  dark: '#212529',
-});
 
 const LeftAxisAndGridWrapper = styled.div`
   display: flex;
@@ -23,16 +12,11 @@ const StyledAxis = styled.div`
   ${({ orientation }) =>
     orientation === 'top'
       ? css`
-          background-color: #e81539;
           flex-direction: row;
-          border-right: 2px solid #212529;
-          border-left: 2px solid ${topAxisFirstChildBorderColor};
+          border-right: 2px solid transparent;
         `
       : css`
-          background-color: #0b24fb;
           flex-direction: column;
-          border-bottom: 2px solid #212529;
-          border-top: 2px solid #212529;
         `};
 `;
 
@@ -45,26 +29,24 @@ const StyledAxisSquare = styled.div`
   ${({ orientation }) =>
     orientation === 'top'
       ? css`
+          background-color: #e81539;
           height: ${({ height }) => `${height}px`};
           width: calc(100% / 11);
           border-right: 2px solid #212529;
+          border-bottom: 2px solid #212529;
           border-top: 2px solid #212529;
           &:first-child {
-            border-top: 2px transparent;
-            background-color: ${topAxisFirstChildColor};
-          }
-          &:last-child {
-            border-right: 0px;
+            width: calc((100% / 11) + 2px);
+            border-top: 0px;
+            background-color: transparent;
           }
         `
       : css`
+          background-color: #0b24fb;
           height: calc(100% / 10);
           width: ${({ width }) => `${width}px`};
           border-bottom: 2px solid #212529;
           border-left: 2px solid #212529;
-          &:last-child {
-            border-bottom: 0px;
-          }
         `};
 `;
 
