@@ -9,6 +9,18 @@ const StyledGridSquare = styled.div`
   border-right: 2px solid #212529;
 `;
 
-const GridSquare = () => <StyledGridSquare />;
+const GridSquare = () => {
+  const [, drop] = useDrop(() => ({
+    accept: 'ship',
+    drop: (item, monitor) => {
+      console.log('monitor getitem', monitor.getItem());
+    },
+    collect: (monitor) => ({
+      isOver: !!monitor.isOver(),
+    }),
+  }));
+
+  return <StyledGridSquare ref={drop} />;
+};
 
 export default GridSquare;
