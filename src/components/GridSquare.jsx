@@ -13,6 +13,7 @@ const GridSquare = () => {
   const [, drop] = useDrop(() => ({
     accept: 'ship',
     drop: (item, monitor) => {
+      // eslint-disable-next-line no-console
       console.log('monitor getitem', monitor.getItem());
     },
     collect: (monitor) => ({
