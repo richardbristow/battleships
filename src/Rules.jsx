@@ -32,6 +32,7 @@ const Rules = () => (
               WIN CONDITION: A game of battleships is won by the player who
               sinks all their opponents battleships first.
             </Text>
+            <Text terminalText marker="&gt;" />
           </Typer>
         </ScrollbarCustom>
       </StyledRules>
