@@ -139,7 +139,7 @@ const Typer = ({ characterDelay, textBlockDelay, children }) => {
       );
     }
 
-    return null;
+    return child;
   });
 
   return childrenArray.slice(0, childrenIndex + 1);

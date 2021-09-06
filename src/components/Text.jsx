@@ -34,7 +34,8 @@ const Text = ({
   terminalText,
 }) => {
   const CustomElement = textElementTag;
-  const isObject = typeof children[children.length - 1] !== 'string';
+  const isObject =
+    children && typeof children[children.length - 1] !== 'string';
 
   return (
     <StyledText
