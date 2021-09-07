@@ -40,10 +40,8 @@ const NoRoute = () => {
         Whoops! You&apos;ve stumbled upon a page that doesn&apos;t exist.
       </TyperBlock>
       <TyperBlock marker="&gt;">
-        <p>
-          You&apos;ll be redirected back <LinkCustom to="/">home</LinkCustom>{' '}
-          in... {timeLeft} seconds.
-        </p>
+        You&apos;ll be redirected back <LinkCustom to="/">home</LinkCustom>{' '}
+        in... {timeLeft} seconds.
       </TyperBlock>
       <Progress type="is-warning" value={(10 - timeLeft) * 10} max="100" />
     </StyledNoRoute>
