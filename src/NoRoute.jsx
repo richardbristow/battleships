@@ -6,7 +6,7 @@ import LinkCustom from './components/LinkCustom';
 import Container from './components/Container';
 import PixelArt from './components/PixelArt';
 import Progress from './components/Progress';
-import Text from './components/Text';
+import TyperBlock from './components/TyperBlock';
 
 const StyledNoRoute = styled(Container)`
   progress {
@@ -29,22 +29,22 @@ const NoRoute = () => {
 
   return (
     <StyledNoRoute title="Error: 404">
-      <Text marker="&gt;">
+      <TyperBlock marker="&gt;">
         <PixelArt
           name="sadSmiley"
           alt="error 404 page not found"
           height="50px"
         />
-      </Text>
-      <Text marker="&gt;">
+      </TyperBlock>
+      <TyperBlock marker="&gt;">
         Whoops! You&apos;ve stumbled upon a page that doesn&apos;t exist.
-      </Text>
-      <Text marker="&gt;">
+      </TyperBlock>
+      <TyperBlock marker="&gt;">
         <p>
           You&apos;ll be redirected back <LinkCustom to="/">home</LinkCustom>{' '}
           in... {timeLeft} seconds.
         </p>
-      </Text>
+      </TyperBlock>
       <Progress type="is-warning" value={(10 - timeLeft) * 10} max="100" />
     </StyledNoRoute>
   );

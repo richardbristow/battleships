@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components/macro';
 
 import '../keyframes.css';
 
-const StyledText = styled.div`
+const StyledTyperBlock = styled.div`
   display: flex;
   margin-bottom: 16px;
 
@@ -26,7 +26,7 @@ const StyledText = styled.div`
     `}
 `;
 
-const Text = ({
+const TyperBlock = ({
   className,
   marker,
   children,
@@ -38,7 +38,7 @@ const Text = ({
     children && typeof children[children.length - 1] !== 'string';
 
   return (
-    <StyledText
+    <StyledTyperBlock
       className={isObject ? `${className} passed-elements` : className}
       terminalText={terminalText}
     >
@@ -48,11 +48,11 @@ const Text = ({
       ) : (
         <CustomElement>{children}</CustomElement>
       )}
-    </StyledText>
+    </StyledTyperBlock>
   );
 };
 
-Text.defaultProps = {
+TyperBlock.defaultProps = {
   marker: null,
   children: null,
   textElementTag: 'p',
@@ -60,7 +60,7 @@ Text.defaultProps = {
   className: null,
 };
 
-Text.propTypes = {
+TyperBlock.propTypes = {
   marker: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.string,
@@ -72,4 +72,4 @@ Text.propTypes = {
   className: PropTypes.string,
 };
 
-export default Text;
+export default TyperBlock;
