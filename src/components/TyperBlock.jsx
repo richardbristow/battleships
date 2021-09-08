@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components/macro';
 
+import Cursor from './Cursor';
 import '../keyframes.css';
 
 const StyledTyperBlock = styled.div`
@@ -32,6 +33,7 @@ const TyperBlock = ({
   children,
   textElementTag,
   terminalText,
+  withCursor,
 }) => {
   const CustomElement = textElementTag;
   const isObject =
@@ -44,9 +46,15 @@ const TyperBlock = ({
     >
       {marker && <span className="marker">{marker}</span>}
       {isObject ? (
-        <div>{children}</div>
+        <div>
+          {children}
+          {withCursor && <Cursor terminalText={terminalText} />}
+        </div>
       ) : (
-        <CustomElement>{children}</CustomElement>
+        <CustomElement>
+          {children}
+          {withCursor && <Cursor terminalText={terminalText} />}
+        </CustomElement>
       )}
     </StyledTyperBlock>
   );
@@ -58,6 +66,7 @@ TyperBlock.defaultProps = {
   textElementTag: 'p',
   terminalText: false,
   className: null,
+  withCursor: false,
 };
 
 TyperBlock.propTypes = {
@@ -70,6 +79,7 @@ TyperBlock.propTypes = {
   textElementTag: PropTypes.string,
   terminalText: PropTypes.bool,
   className: PropTypes.string,
+  withCursor: PropTypes.bool,
 };
 
 export default TyperBlock;
