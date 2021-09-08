@@ -34,6 +34,7 @@ const TyperBlock = ({
   textElementTag,
   terminalText,
   withCursor,
+  cursorBlink,
 }) => {
   const CustomElement = textElementTag;
   const isObject =
@@ -48,12 +49,16 @@ const TyperBlock = ({
       {isObject ? (
         <div>
           {children}
-          {withCursor && <Cursor terminalText={terminalText} />}
+          {withCursor && (
+            <Cursor cursorBlink={cursorBlink} terminalText={terminalText} />
+          )}
         </div>
       ) : (
         <CustomElement>
           {children}
-          {withCursor && <Cursor terminalText={terminalText} />}
+          {withCursor && (
+            <Cursor cursorBlink={cursorBlink} terminalText={terminalText} />
+          )}
         </CustomElement>
       )}
     </StyledTyperBlock>
@@ -67,6 +72,7 @@ TyperBlock.defaultProps = {
   terminalText: false,
   className: null,
   withCursor: false,
+  cursorBlink: false,
 };
 
 TyperBlock.propTypes = {
@@ -80,6 +86,7 @@ TyperBlock.propTypes = {
   terminalText: PropTypes.bool,
   className: PropTypes.string,
   withCursor: PropTypes.bool,
+  cursorBlink: PropTypes.bool,
 };
 
 export default TyperBlock;
