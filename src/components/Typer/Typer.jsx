@@ -61,7 +61,9 @@ const Typer = ({
       );
     }
 
-    return child;
+    return React.cloneElement(child, {
+      withCursor: true,
+    });
   });
 
   return childrenArray.slice(0, childrenIndex + 1);
