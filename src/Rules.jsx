@@ -24,7 +24,7 @@ const Rules = () => (
           <Typer
             characterDelay={18}
             nextBlockDelay={150}
-            startTypingDelay={400}
+            startTypingDelay={500}
           >
             <TyperBlock terminalText marker="&gt;">
               THE RULES OF WARFARE
