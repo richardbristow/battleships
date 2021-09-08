@@ -6,7 +6,7 @@ import LinkCustom from './components/LinkCustom';
 import Container from './components/Container';
 import PixelArt from './components/PixelArt';
 import Progress from './components/Progress';
-import TyperBlock from './components/TyperBlock';
+import TyperBlock from './components/Typer/TyperBlock';
 
 const StyledNoRoute = styled(Container)`
   progress {

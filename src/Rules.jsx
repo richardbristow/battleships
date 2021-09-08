@@ -1,9 +1,9 @@
 import styled from 'styled-components/macro';
 
 import Container from './components/Container';
-import TyperBlock from './components/TyperBlock';
+import TyperBlock from './components/Typer/TyperBlock';
 import Terminal from './components/Terminal';
-import Typer from './Typer';
+import Typer from './components/Typer/Typer';
 import ScrollbarCustom from './components/ScrollbarCustom';
 
 const StyledRules = styled.div`
