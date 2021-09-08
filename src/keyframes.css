@@ -189,3 +189,18 @@
     bottom: 0%;
   }
 }
+
+@keyframes cursorBlink {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}

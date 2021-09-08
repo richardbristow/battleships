@@ -8,23 +8,28 @@ const StyledCursor = styled.span`
   width: 14px;
   height: 20px;
   background-color: #fff;
-  ${({ terminalText }) =>
-    terminalText &&
+
+  ${({ terminalText, cursorBlink }) =>
+    (terminalText || cursorBlink) &&
     css`
-      animation: boxShadow 2s infinite;
+      animation: ${terminalText && 'boxShadow 2s infinite'}
+        ${terminalText && cursorBlink && ','}
+        ${cursorBlink && 'cursorBlink 1.4s infinite step-end'};
     `}
 `;
 
-const Cursor = ({ terminalText }) => (
-  <StyledCursor terminalText={terminalText} />
+const Cursor = ({ terminalText, cursorBlink }) => (
+  <StyledCursor terminalText={terminalText} cursorBlink={cursorBlink} />
 );
 
 Cursor.defaultProps = {
   terminalText: false,
+  cursorBlink: false,
 };
 
 Cursor.propTypes = {
   terminalText: PropTypes.bool,
+  cursorBlink: PropTypes.bool,
 };
 
 export default Cursor;
