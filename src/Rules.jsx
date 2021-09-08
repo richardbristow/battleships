@@ -21,7 +21,11 @@ const Rules = () => (
     <Terminal>
       <StyledRules>
         <ScrollbarCustom>
-          <Typer characterDelay={18} textBlockDelay={500}>
+          <Typer
+            characterDelay={18}
+            nextBlockDelay={150}
+            startTypingDelay={400}
+          >
             <TyperBlock terminalText marker="&gt;">
               THE RULES OF WARFARE
             </TyperBlock>
