@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 
-import typingDelayTimer from '../typingDelayTimer';
-
 const JsxTyper = ({
   children,
   startTypingDelay,
@@ -13,25 +11,24 @@ const JsxTyper = ({
   const startTypingDelayTimerRef = useRef(null);
   const nextBlockDelayTimerRef = useRef(null);
 
-  const elementTyper = useCallback(async () => {
-    startTypingDelayTimerRef.current = await typingDelayTimer(startTypingDelay);
+  const elementTyper = useCallback(() => {
     setElementToType(children.props.children);
     nextBlockDelayTimerRef.current = setTimeout(() => {
       handleNextBlock();
       setIsTyping(false);
     }, nextBlockDelay);
-  }, [
-    children.props.children,
-    handleNextBlock,
-    nextBlockDelay,
-    startTypingDelay,
-  ]);
+  }, [children.props.children, handleNextBlock, nextBlockDelay]);
 
   useEffect(() => {
-    elementTyper();
+    startTypingDelayTimerRef.current = setTimeout(() => {
+      elementTyper();
+    }, startTypingDelay);
 
-    return () => clearTimeout(startTypingDelayTimerRef.current);
-  }, [elementTyper]);
+    return () => {
+      clearTimeout(startTypingDelayTimerRef.current);
+      clearTimeout(nextBlockDelayTimerRef.current);
+    };
+  }, [elementTyper, startTypingDelay]);
 
   return React.cloneElement(children, {
     children: elementToType,

@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 
-import typingDelayTimer from '../typingDelayTimer';
-
 const ArrayTyper = ({
   children,
   characterDelay,
@@ -20,18 +18,8 @@ const ArrayTyper = ({
   const charDelayTimerRef = useRef(null);
   const nextBlockDelayTimerRef = useRef(null);
 
-  useEffect(() => () => {
-    clearTimeout(startTypingDelayTimerRef.current);
-    clearTimeout(nextBlockDelayTimerRef.current);
-  });
-
   const indexedCharTyper = useCallback(
-    async (stringToType) => {
-      if (currentCharIndex === 0 && childrenIndex === 0) {
-        startTypingDelayTimerRef.current = await typingDelayTimer(
-          startTypingDelay
-        );
-      }
+    (stringToType) => {
       if (childrenIndex < arrayToType.length) {
         if (typeof stringToType === 'string') {
           if (currentCharIndex < stringToType.length) {
@@ -66,15 +54,29 @@ const ArrayTyper = ({
       currentCharIndex,
       handleNextBlock,
       nextBlockDelay,
-      startTypingDelay,
     ]
   );
 
   useEffect(() => {
-    indexedCharTyper(arrayToType[childrenIndex]);
+    startTypingDelayTimerRef.current = setTimeout(
+      () => {
+        indexedCharTyper(arrayToType[childrenIndex]);
+      },
+      currentCharIndex === 0 && childrenIndex === 0 ? startTypingDelay : 0
+    );
 
-    return () => clearTimeout(charDelayTimerRef.current);
-  }, [arrayToType, childrenIndex, indexedCharTyper]);
+    return () => {
+      clearTimeout(charDelayTimerRef.current);
+      clearTimeout(startTypingDelayTimerRef.current);
+      clearTimeout(nextBlockDelayTimerRef.current);
+    };
+  }, [
+    arrayToType,
+    childrenIndex,
+    currentCharIndex,
+    indexedCharTyper,
+    startTypingDelay,
+  ]);
 
   return React.cloneElement(children, {
     children: text,
