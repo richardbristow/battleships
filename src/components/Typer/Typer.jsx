@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import ArrayTyper from './typers/ArrayTyper';
 import TextTyper from './typers/TextTyper';
@@ -11,15 +11,10 @@ const Typer = ({
   children,
 }) => {
   const [childrenIndex, setChildrenIndex] = useState(0);
-  const nextBlockDelayTimerRef = useRef(null);
 
-  useEffect(() => () => clearTimeout(nextBlockDelayTimerRef.current));
-
-  const nextBlockDelayTimer = useCallback(() => {
-    nextBlockDelayTimerRef.current = setTimeout(() => {
-      setChildrenIndex((prevChildrenIndex) => prevChildrenIndex + 1);
-    }, nextBlockDelay);
-  }, [nextBlockDelay]);
+  const handleNextBlock = useCallback(() => {
+    setChildrenIndex((prevChildrenIndex) => prevChildrenIndex + 1);
+  }, []);
 
   const childrenArray = React.Children.map(children, (child) => {
     const {
@@ -29,9 +24,10 @@ const Typer = ({
     if (typeof childToType === 'string') {
       return (
         <TextTyper
+          handleNextBlock={handleNextBlock}
           characterDelay={characterDelay}
-          nextBlockDelayTimer={nextBlockDelayTimer}
           startTypingDelay={startTypingDelay}
+          nextBlockDelay={nextBlockDelay}
         >
           {child}
         </TextTyper>
@@ -41,8 +37,9 @@ const Typer = ({
     if (React.isValidElement(childToType)) {
       return (
         <JsxTyper
-          nextBlockDelayTimer={nextBlockDelayTimer}
+          handleNextBlock={handleNextBlock}
           startTypingDelay={startTypingDelay}
+          nextBlockDelay={nextBlockDelay}
         >
           {child}
         </JsxTyper>
@@ -52,9 +49,10 @@ const Typer = ({
     if (Array.isArray(childToType)) {
       return (
         <ArrayTyper
+          handleNextBlock={handleNextBlock}
           characterDelay={characterDelay}
-          nextBlockDelayTimer={nextBlockDelayTimer}
           startTypingDelay={startTypingDelay}
+          nextBlockDelay={nextBlockDelay}
         >
           {child}
         </ArrayTyper>

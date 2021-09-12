@@ -5,20 +5,25 @@ import typingDelayTimer from '../typingDelayTimer';
 const ArrayTyper = ({
   children,
   characterDelay,
-  nextBlockDelayTimer,
   startTypingDelay,
+  handleNextBlock,
+  nextBlockDelay,
 }) => {
   const [text, setText] = useState([]);
   const [childrenIndex, setChildrenIndex] = useState(0);
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(true);
-  const charDelayTimerRef = useRef(null);
   const {
     props: { children: arrayToType },
   } = children;
   const startTypingDelayTimerRef = useRef(null);
+  const charDelayTimerRef = useRef(null);
+  const nextBlockDelayTimerRef = useRef(null);
 
-  useEffect(() => () => clearTimeout(startTypingDelayTimerRef.current));
+  useEffect(() => () => {
+    clearTimeout(startTypingDelayTimerRef.current);
+    clearTimeout(nextBlockDelayTimerRef.current);
+  });
 
   const indexedCharTyper = useCallback(
     async (stringToType) => {
@@ -48,8 +53,10 @@ const ArrayTyper = ({
           setChildrenIndex((prevIndex) => prevIndex + 1);
         }
       } else {
-        nextBlockDelayTimer();
-        setIsTyping(false);
+        nextBlockDelayTimerRef.current = setTimeout(() => {
+          handleNextBlock();
+          setIsTyping(false);
+        }, nextBlockDelay);
       }
     },
     [
@@ -57,7 +64,8 @@ const ArrayTyper = ({
       characterDelay,
       childrenIndex,
       currentCharIndex,
-      nextBlockDelayTimer,
+      handleNextBlock,
+      nextBlockDelay,
       startTypingDelay,
     ]
   );
