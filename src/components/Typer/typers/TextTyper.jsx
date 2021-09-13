@@ -6,6 +6,7 @@ const TextTyper = ({
   startTypingDelay,
   handleNextBlock,
   nextBlockDelay,
+  lastChild,
 }) => {
   const [text, setText] = useState('');
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
@@ -30,11 +31,19 @@ const TextTyper = ({
       } else {
         nextBlockDelayTimerRef.current = setTimeout(() => {
           handleNextBlock();
-          setShowCursor(false);
+          if (!lastChild) {
+            setShowCursor(false);
+          }
         }, nextBlockDelay);
       }
     },
-    [characterDelay, currentCharIndex, handleNextBlock, nextBlockDelay]
+    [
+      characterDelay,
+      currentCharIndex,
+      handleNextBlock,
+      lastChild,
+      nextBlockDelay,
+    ]
   );
 
   useEffect(() => {

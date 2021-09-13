@@ -5,6 +5,7 @@ const JsxTyper = ({
   startTypingDelay,
   handleNextBlock,
   nextBlockDelay,
+  lastChild,
 }) => {
   const [elementToType, setElementToType] = useState();
   const [showCursor, setShowCursor] = useState(true);
@@ -17,9 +18,11 @@ const JsxTyper = ({
     setElementToType(children.props.children);
     nextBlockDelayTimerRef.current = setTimeout(() => {
       handleNextBlock();
-      setShowCursor(false);
+      if (!lastChild) {
+        setShowCursor(false);
+      }
     }, nextBlockDelay);
-  }, [children.props.children, handleNextBlock, nextBlockDelay]);
+  }, [children.props.children, handleNextBlock, lastChild, nextBlockDelay]);
 
   useEffect(() => {
     startTypingDelayTimerRef.current = setTimeout(() => {

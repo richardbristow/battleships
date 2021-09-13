@@ -6,6 +6,7 @@ const ArrayTyper = ({
   startTypingDelay,
   handleNextBlock,
   nextBlockDelay,
+  lastChild,
 }) => {
   const [text, setText] = useState([]);
   const [childrenIndex, setChildrenIndex] = useState(0);
@@ -47,7 +48,9 @@ const ArrayTyper = ({
       } else {
         nextBlockDelayTimerRef.current = setTimeout(() => {
           handleNextBlock();
-          setShowCursor(false);
+          if (!lastChild) {
+            setShowCursor(false);
+          }
         }, nextBlockDelay);
       }
     },
@@ -57,6 +60,7 @@ const ArrayTyper = ({
       childrenIndex,
       currentCharIndex,
       handleNextBlock,
+      lastChild,
       nextBlockDelay,
     ]
   );

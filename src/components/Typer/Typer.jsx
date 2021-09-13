@@ -16,10 +16,12 @@ const Typer = ({
     setChildrenIndex((prevChildrenIndex) => prevChildrenIndex + 1);
   }, []);
 
-  const childrenArray = React.Children.map(children, (child) => {
+  const childrenArray = React.Children.map(children, (child, index) => {
     const {
       props: { children: childToType },
     } = child;
+
+    const lastChild = index === children.length - 1;
 
     if (typeof childToType === 'string') {
       return (
@@ -28,6 +30,7 @@ const Typer = ({
           characterDelay={characterDelay}
           startTypingDelay={startTypingDelay}
           nextBlockDelay={nextBlockDelay}
+          lastChild={lastChild}
         >
           {child}
         </TextTyper>
@@ -41,6 +44,7 @@ const Typer = ({
           characterDelay={characterDelay}
           startTypingDelay={startTypingDelay}
           nextBlockDelay={nextBlockDelay}
+          lastChild={lastChild}
         >
           {child}
         </ArrayTyper>
@@ -52,6 +56,7 @@ const Typer = ({
         handleNextBlock={handleNextBlock}
         startTypingDelay={startTypingDelay}
         nextBlockDelay={nextBlockDelay}
+        lastChild={lastChild}
       >
         {child}
       </JsxTyper>
