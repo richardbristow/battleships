@@ -18,6 +18,10 @@ const ArrayTyper = ({
   const charDelayTimerRef = useRef(null);
   const nextBlockDelayTimerRef = useRef(null);
 
+  const isTyping =
+    childrenIndex < arrayToType.length &&
+    (currentCharIndex !== 0 || childrenIndex !== 0);
+
   const indexedCharTyper = useCallback(
     (stringToType) => {
       if (childrenIndex < arrayToType.length) {
@@ -81,9 +85,7 @@ const ArrayTyper = ({
   return React.cloneElement(children, {
     children: text,
     withCursor: showCursor,
-    cursorBlink:
-      !(childrenIndex < arrayToType.length) ||
-      (currentCharIndex === 0 && childrenIndex === 0),
+    cursorBlink: !isTyping,
   });
 };
 

@@ -17,6 +17,9 @@ const TextTyper = ({
   const startTypingDelayTimerRef = useRef(null);
   const nextBlockDelayTimerRef = useRef(null);
 
+  const isTyping =
+    currentCharIndex < childToType.length && currentCharIndex !== 0;
+
   const charTyper = useCallback(
     (stringToType) => {
       if (currentCharIndex < stringToType.length) {
@@ -52,8 +55,7 @@ const TextTyper = ({
   return React.cloneElement(children, {
     children: text,
     withCursor: showCursor,
-    cursorBlink:
-      !(currentCharIndex < childToType.length) || currentCharIndex === 0,
+    cursorBlink: !isTyping,
   });
 };
 
