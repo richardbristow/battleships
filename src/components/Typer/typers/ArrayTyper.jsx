@@ -10,7 +10,7 @@ const ArrayTyper = ({
   const [text, setText] = useState([]);
   const [childrenIndex, setChildrenIndex] = useState(0);
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
-  const [isTyping, setIsTyping] = useState(true);
+  const [showCursor, setShowCursor] = useState(true);
   const {
     props: { children: arrayToType },
   } = children;
@@ -43,7 +43,7 @@ const ArrayTyper = ({
       } else {
         nextBlockDelayTimerRef.current = setTimeout(() => {
           handleNextBlock();
-          setIsTyping(false);
+          setShowCursor(false);
         }, nextBlockDelay);
       }
     },
@@ -80,7 +80,7 @@ const ArrayTyper = ({
 
   return React.cloneElement(children, {
     children: text,
-    withCursor: isTyping,
+    withCursor: showCursor,
   });
 };
 
