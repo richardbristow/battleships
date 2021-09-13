@@ -15,6 +15,7 @@ const StyledCursor = styled.span`
       animation: ${terminalText && 'boxShadow 2s infinite'}
         ${terminalText && cursorBlink && ','}
         ${cursorBlink && 'cursorBlink 1.4s infinite step-end'};
+      transform: translate3d(0, 0, 0);
     `}
 `;
 

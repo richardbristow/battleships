@@ -42,6 +42,7 @@ const StyledScanline = styled.div`
   position: absolute;
   bottom: 100%;
   animation: scanline 8s linear infinite;
+  transform: translate3d(0, 0, 0);
 `;
 
 const Terminal = ({ children, scanline }) => (

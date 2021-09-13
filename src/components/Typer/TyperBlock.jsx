@@ -24,6 +24,7 @@ const StyledTyperBlock = styled.div`
     terminalText &&
     css`
       animation: textShadow 2s infinite;
+      transform: translate3d(0, 0, 0);
     `}
 `;
 

@@ -23,6 +23,7 @@ const StyledNavLinkCustom = styled.li`
 
   .blink {
     animation: blink 1s step-start 0.5s 2;
+    transform: translate3d(0, 0, 0);
   }
 `;
 

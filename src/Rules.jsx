@@ -13,7 +13,6 @@ const StyledRules = styled.div`
 
 const StyleContainer = styled(Container)`
   position: relative;
-  transform: translate3d(0, 0, 0);
 `;
 
 const Rules = () => (
