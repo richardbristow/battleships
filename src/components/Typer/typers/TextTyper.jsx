@@ -52,6 +52,8 @@ const TextTyper = ({
   return React.cloneElement(children, {
     children: text,
     withCursor: showCursor,
+    cursorBlink:
+      !(currentCharIndex < childToType.length) || currentCharIndex === 0,
   });
 };
 

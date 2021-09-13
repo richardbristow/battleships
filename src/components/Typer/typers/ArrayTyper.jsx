@@ -81,6 +81,9 @@ const ArrayTyper = ({
   return React.cloneElement(children, {
     children: text,
     withCursor: showCursor,
+    cursorBlink:
+      !(childrenIndex < arrayToType.length) ||
+      (currentCharIndex === 0 && childrenIndex === 0),
   });
 };
 

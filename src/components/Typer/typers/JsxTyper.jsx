@@ -8,10 +8,12 @@ const JsxTyper = ({
 }) => {
   const [elementToType, setElementToType] = useState();
   const [showCursor, setShowCursor] = useState(true);
+  const [isCursorBlinking, setIsCursorBlinking] = useState(true);
   const startTypingDelayTimerRef = useRef(null);
   const nextBlockDelayTimerRef = useRef(null);
 
   const elementTyper = useCallback(() => {
+    setIsCursorBlinking(true);
     setElementToType(children.props.children);
     nextBlockDelayTimerRef.current = setTimeout(() => {
       handleNextBlock();
@@ -21,6 +23,7 @@ const JsxTyper = ({
 
   useEffect(() => {
     startTypingDelayTimerRef.current = setTimeout(() => {
+      setIsCursorBlinking(false);
       elementTyper();
     }, startTypingDelay);
 
@@ -33,6 +36,7 @@ const JsxTyper = ({
   return React.cloneElement(children, {
     children: elementToType,
     withCursor: showCursor,
+    cursorBlink: isCursorBlinking,
   });
 };
 
