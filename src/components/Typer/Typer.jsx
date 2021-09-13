@@ -34,18 +34,6 @@ const Typer = ({
       );
     }
 
-    if (React.isValidElement(childToType)) {
-      return (
-        <JsxTyper
-          handleNextBlock={handleNextBlock}
-          startTypingDelay={startTypingDelay}
-          nextBlockDelay={nextBlockDelay}
-        >
-          {child}
-        </JsxTyper>
-      );
-    }
-
     if (Array.isArray(childToType)) {
       return (
         <ArrayTyper
@@ -59,9 +47,15 @@ const Typer = ({
       );
     }
 
-    return React.cloneElement(child, {
-      withCursor: true,
-    });
+    return (
+      <JsxTyper
+        handleNextBlock={handleNextBlock}
+        startTypingDelay={startTypingDelay}
+        nextBlockDelay={nextBlockDelay}
+      >
+        {child}
+      </JsxTyper>
+    );
   });
 
   return childrenArray.slice(0, childrenIndex + 1);
