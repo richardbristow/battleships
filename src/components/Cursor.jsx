@@ -5,8 +5,9 @@ import '../keyframes.css';
 
 const StyledCursor = styled.span`
   display: inline-block;
-  width: 14px;
-  height: 20px;
+  width: 0.9em;
+  height: 1em;
+  vertical-align: text-top;
   background-color: #fff;
 
   ${({ terminalText, cursorBlink }) =>
