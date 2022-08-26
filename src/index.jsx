@@ -19,17 +19,17 @@ const container = document.getElementById('app');
 const root = createRoot(container);
 
 root.render(
-  <React.StrictMode>
-    <ThemeContext>
-      <AudioContext>
-        <Router>
-          <DndProvider backend={HTML5Backend}>
-            <StyledWrapper>
-              <App />
-            </StyledWrapper>
-          </DndProvider>
-        </Router>
-      </AudioContext>
-    </ThemeContext>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <ThemeContext>
+    <AudioContext>
+      <Router>
+        <DndProvider backend={HTML5Backend}>
+          <StyledWrapper>
+            <App />
+          </StyledWrapper>
+        </DndProvider>
+      </Router>
+    </AudioContext>
+  </ThemeContext>
+  // </React.StrictMode>
 );
