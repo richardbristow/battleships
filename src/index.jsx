@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import styled from 'styled-components/macro';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -15,7 +15,10 @@ const StyledWrapper = styled.div`
   padding: 0px 20px;
 `;
 
-ReactDOM.render(
+const container = document.getElementById('app');
+const root = createRoot(container);
+
+root.render(
   <React.StrictMode>
     <ThemeContext>
       <AudioContext>
@@ -28,6 +31,5 @@ ReactDOM.render(
         </Router>
       </AudioContext>
     </ThemeContext>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );

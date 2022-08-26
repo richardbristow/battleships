@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import LinkCustom from './components/LinkCustom';
 import Container from './components/Container';
@@ -16,16 +16,16 @@ const StyledNoRoute = styled(Container)`
 
 const NoRoute = () => {
   const [timeLeft, setTimeLeft] = useState(10);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (timeLeft === 0) {
-      history.push('/');
+      navigate.push('/');
     }
     const timerID = setInterval(() => setTimeLeft(timeLeft - 1), 1000);
 
     return () => clearInterval(timerID);
-  }, [history, timeLeft]);
+  }, [navigate, timeLeft]);
 
   return (
     <StyledNoRoute title="Error: 404">

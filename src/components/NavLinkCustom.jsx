@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import { useRouteMatch, useLocation } from 'react-router-dom';
+import { useMatch, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import '../keyframes.css';
@@ -30,7 +30,7 @@ const StyledNavLinkCustom = styled.li`
 const NavLinkCustom = ({ label, to }) => {
   const { isMuted } = useAudio();
 
-  const match = useRouteMatch({
+  const match = useMatch({
     path: to,
     exact: true,
   });
